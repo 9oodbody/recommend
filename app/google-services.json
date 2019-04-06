@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "505904230014",
+    "firebase_url": "https://goodbody-e22fd.firebaseio.com",
+    "project_id": "goodbody-e22fd",
+    "storage_bucket": "goodbody-e22fd.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:505904230014:android:6b5cedde38effa6b",
+        "android_client_info": {
+          "package_name": "com.cau.goodbody"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "505904230014-ke6cfkl9j2aij09c5a62ghhv9do8ptpl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.cau.goodbody",
+            "certificate_hash": "4c3defadb33b8a0d8427b49375a60364f9e6d4e6"
+          }
+        },
+        {
+          "client_id": "505904230014-jjl3hml636nt2kgfv8onfnnjneop70hq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmZuIg3uGDIl3zkR8V_z0TMrW6ujfQJmo"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "505904230014-jjl3hml636nt2kgfv8onfnnjneop70hq.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

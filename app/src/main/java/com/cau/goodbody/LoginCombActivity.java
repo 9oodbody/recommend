@@ -57,7 +57,7 @@ public class LoginCombActivity extends BaseActivity implements
     private GoogleSignInClient mGoogleSignInClient;
 
     // facebook login
-    private CallbackManager mCallbackManager;
+//    private CallbackManager mCallbackManager;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -92,34 +92,35 @@ public class LoginCombActivity extends BaseActivity implements
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
 
+        //facebook login
         // [START initialize_fblogin]
         // Initialize Facebook Login button
-        mCallbackManager = CallbackManager.Factory.create();
-        LoginButton loginButton = findViewById(R.id.buttonFacebookLogin);
-        loginButton.setReadPermissions("email", "public_profile");
-        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
-            @Override
-            public void onSuccess(LoginResult loginResult) {
-                Log.d(TAG, "facebook:onSuccess:" + loginResult);
-                handleFacebookAccessToken(loginResult.getAccessToken());
-            }
-
-            @Override
-            public void onCancel() {
-                Log.d(TAG, "facebook:onCancel");
-                // [START_EXCLUDE]
-                updateUI(null);
-                // [END_EXCLUDE]
-            }
-
-            @Override
-            public void onError(FacebookException error) {
-                Log.d(TAG, "facebook:onError", error);
-                // [START_EXCLUDE]
-                updateUI(null);
-                // [END_EXCLUDE]
-            }
-        });
+//        mCallbackManager = CallbackManager.Factory.create();
+//        LoginButton loginButton = findViewById(R.id.buttonFacebookLogin);
+//        loginButton.setReadPermissions("email", "public_profile");
+//        loginButton.registerCallback(mCallbackManager, new FacebookCallback<LoginResult>() {
+//            @Override
+//            public void onSuccess(LoginResult loginResult) {
+//                Log.d(TAG, "facebook:onSuccess:" + loginResult);
+//                handleFacebookAccessToken(loginResult.getAccessToken());
+//            }
+//
+//            @Override
+//            public void onCancel() {
+//                Log.d(TAG, "facebook:onCancel");
+//                // [START_EXCLUDE]
+//                updateUI(null);
+//                // [END_EXCLUDE]
+//            }
+//
+//            @Override
+//            public void onError(FacebookException error) {
+//                Log.d(TAG, "facebook:onError", error);
+//                // [START_EXCLUDE]
+//                updateUI(null);
+//                // [END_EXCLUDE]
+//            }
+//        });
         // [END initialize_fblogin]
     }
 
@@ -139,7 +140,7 @@ public class LoginCombActivity extends BaseActivity implements
             super.onActivityResult(requestCode, resultCode, data);
 
             //facebook login
-            mCallbackManager.onActivityResult(requestCode, resultCode, data);
+//            mCallbackManager.onActivityResult(requestCode, resultCode, data);
 
             // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
             if (requestCode == RC_SIGN_IN) {
@@ -160,36 +161,43 @@ public class LoginCombActivity extends BaseActivity implements
         // [END onactivityresult]
 
     // [START auth_with_facebook]
-    private void handleFacebookAccessToken(AccessToken token) {
-        Log.d(TAG, "handleFacebookAccessToken:" + token);
-        // [START_EXCLUDE silent]
-        showProgressDialog();
-        // [END_EXCLUDE]
-
-        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
-        mAuth.signInWithCredential(credential)
-                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            // Sign in success, update UI with the signed-in user's information
-                            Log.d(TAG, "signInWithCredential:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
-                        } else {
-                            // If sign in fails, display a message to the user.
-                            Log.w(TAG, "signInWithCredential:failure", task.getException());
-                            Toast.makeText(LoginCombActivity.this, "Authentication failed.",
-                                    Toast.LENGTH_SHORT).show();
-                            updateUI(null);
-                        }
-
-                        // [START_EXCLUDE]
-                        hideProgressDialog();
-                        // [END_EXCLUDE]
-                    }
-                });
-    }
+//    private void handleFacebookAccessToken(AccessToken token) {
+//        Log.d(TAG, "handleFacebookAccessToken:" + token);
+//        // [START_EXCLUDE silent]
+//        showProgressDialog();
+//        // [END_EXCLUDE]
+//
+//        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+//        mAuth.signInWithCredential(credential)
+//                .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+//                    @Override
+//                    public void onComplete(@NonNull Task<AuthResult> task) {
+//                        if (task.isSuccessful()) {
+//                            // Sign in success, update UI with the signed-in user's information
+//                            Log.d(TAG, "signInWithCredential:success");
+//                            FirebaseUser user = mAuth.getCurrentUser();
+////                            updateUI(user);
+//                            if(user.isEmailVerified()){
+//                                Intent mainpageIntent = new Intent(LoginCombActivity.this, MainActivity.class);
+//                                startActivity(mainpageIntent);
+//                            }else{
+//                                Toast.makeText(LoginCombActivity .this, "이메일 인증을 해주세요",
+//                                        Toast.LENGTH_SHORT).show();
+//                            }
+//                        } else {
+//                            // If sign in fails, display a message to the user.
+//                            Log.w(TAG, "signInWithCredential:failure", task.getException());
+//                            Toast.makeText(LoginCombActivity.this, "Authentication failed.",
+//                                    Toast.LENGTH_SHORT).show();
+//                            updateUI(null);
+//                        }
+//
+//                        // [START_EXCLUDE]
+//                        hideProgressDialog();
+//                        // [END_EXCLUDE]
+//                    }
+//                });
+//    }
     // [END auth_with_facebook]
 
     // [START auth_with_google]
@@ -275,7 +283,14 @@ public class LoginCombActivity extends BaseActivity implements
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+//                            updateUI(user);
+                            if(user.isEmailVerified()){
+                                Intent mainpageIntent = new Intent(LoginCombActivity.this, MainActivity.class);
+                                startActivity(mainpageIntent);
+                            }else{
+                                Toast.makeText(LoginCombActivity .this, "이메일 인증을 해주세요",
+                                        Toast.LENGTH_SHORT).show();
+                            }
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
@@ -297,8 +312,10 @@ public class LoginCombActivity extends BaseActivity implements
 
     // [START signin]
     private void signIn_Google() {
-        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
-        startActivityForResult(signInIntent, RC_SIGN_IN);
+//        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
+//        startActivityForResult(signInIntent, RC_SIGN_IN);
+        Intent mainpageIntent = new Intent(LoginCombActivity.this, MainActivity.class);
+        startActivity(mainpageIntent);
     }
     // [END signin]
 
@@ -318,7 +335,7 @@ public class LoginCombActivity extends BaseActivity implements
 
     private void signOut() {
         mAuth.signOut();
-        LoginManager.getInstance().logOut();
+//        LoginManager.getInstance().logOut();
         updateUI(null);
     }
 
@@ -389,9 +406,10 @@ public class LoginCombActivity extends BaseActivity implements
             findViewById(R.id.emailPasswordButtons).setVisibility(View.GONE);
             findViewById(R.id.emailPasswordFields).setVisibility(View.GONE);
             findViewById(R.id.signedInButtons).setVisibility(View.VISIBLE);
-            findViewById(R.id.signOutAndDisconnect).setVisibility(View.VISIBLE);
+//            findViewById(R.id.signOutAndDisconnect).setVisibility(View.VISIBLE);
 
             findViewById(R.id.verifyEmailButton).setEnabled(!user.isEmailVerified());
+            System.out.println(user.isEmailVerified());
         } else {
             mStatusTextView.setText(R.string.signed_out);
             mDetailTextView.setText(null);
@@ -403,7 +421,7 @@ public class LoginCombActivity extends BaseActivity implements
             findViewById(R.id.emailPasswordButtons).setVisibility(View.VISIBLE);
             findViewById(R.id.emailPasswordFields).setVisibility(View.VISIBLE);
             findViewById(R.id.signedInButtons).setVisibility(View.GONE);
-            findViewById(R.id.signOutAndDisconnect).setVisibility(View.GONE);
+//            findViewById(R.id.signOutAndDisconnect).setVisibility(View.GONE);
         }
     }
 

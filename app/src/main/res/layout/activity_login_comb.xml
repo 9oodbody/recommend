@@ -146,16 +146,17 @@
                     <!--android:textColor="#ffffff"-->
                     <!--android:background="@drawable/button_background" />-->
 
-                <com.facebook.login.widget.LoginButton
-                    android:id="@+id/buttonFacebookLogin"
-                    android:layout_width="0dp"
-                    android:layout_height="50dp"
-                    android:layout_weight="1"
-                    android:layout_gravity="center_horizontal"
-                    android:layout_marginTop="30dp"
-                    android:layout_marginBottom="30dp"
-                    android:layout_centerInParent="true"
-                    style="@style/Face"/>
+                <!--이거임-->
+                <!--<com.facebook.login.widget.LoginButton-->
+                    <!--android:id="@+id/buttonFacebookLogin"-->
+                    <!--android:layout_width="0dp"-->
+                    <!--android:layout_height="50dp"-->
+                    <!--android:layout_weight="1"-->
+                    <!--android:layout_gravity="center_horizontal"-->
+                    <!--android:layout_marginTop="30dp"-->
+                    <!--android:layout_marginBottom="30dp"-->
+                    <!--android:layout_centerInParent="true"-->
+                    <!--style="@style/Face"/>-->
 
             </LinearLayout>
         </LinearLayout>
@@ -192,33 +193,33 @@
 
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/signOutAndDisconnect"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingLeft="16dp"
-            android:paddingRight="16dp"
-            android:visibility="gone"
-            tools:visibility="visible">
+        <!--<LinearLayout-->
+            <!--android:id="@+id/signOutAndDisconnect"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:orientation="horizontal"-->
+            <!--android:paddingLeft="16dp"-->
+            <!--android:paddingRight="16dp"-->
+            <!--android:visibility="gone"-->
+            <!--tools:visibility="visible">-->
 
-            <Button
-                android:id="@id/signOutButton"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/sign_out"
-                android:theme="@style/ThemeOverlay.MyDarkButton" />
+            <!--<Button-->
+                <!--android:id="@id/signOutButton"-->
+                <!--style="@style/Widget.AppCompat.Button.Colored"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="@string/sign_out"-->
+                <!--android:theme="@style/ThemeOverlay.MyDarkButton" />-->
 
-            <Button
-                android:id="@+id/disconnectButton"
-                style="@style/Widget.AppCompat.Button.Colored"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="@string/disconnect"
-                android:theme="@style/ThemeOverlay.MyDarkButton" />
-        </LinearLayout>
+            <!--<Button-->
+                <!--android:id="@+id/disconnectButton"-->
+                <!--style="@style/Widget.AppCompat.Button.Colored"-->
+                <!--android:layout_width="0dp"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:layout_weight="1"-->
+                <!--android:text="@string/disconnect"-->
+                <!--android:theme="@style/ThemeOverlay.MyDarkButton" />-->
+        <!--</LinearLayout>-->
 
 </LinearLayout>

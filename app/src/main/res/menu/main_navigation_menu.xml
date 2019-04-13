@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/navi_goal_setting"
+            android:icon="@drawable/target"
+            android:title="목표 설정"
+            />
+        <item
+            android:id="@+id/navi_physical_info"
+            android:icon="@drawable/file"
+            android:title="신체 정보"
+            />
+        <item
+            android:id="@+id/navi_all_workout"
+            android:icon="@drawable/weightlifting"
+            android:title="전체 운동"
+            />
+        <item
+            android:id="@+id/navi_settings"
+            android:icon="@drawable/settings"
+            android:title="설정"
+            />
+    </group>
+</menu>

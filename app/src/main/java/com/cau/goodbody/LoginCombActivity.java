@@ -36,6 +36,8 @@ import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.firebase.auth.FacebookAuthProvider;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class LoginCombActivity extends BaseActivity implements
         View.OnClickListener {
@@ -58,10 +60,15 @@ public class LoginCombActivity extends BaseActivity implements
 
     // facebook login
 //    private CallbackManager mCallbackManager;
+
+    private DatabaseReference mDatabase;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_comb);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         // Views
         mLogo = findViewById(R.id.logo);
@@ -232,7 +239,7 @@ public class LoginCombActivity extends BaseActivity implements
     }
     // [END auth_with_google]
 
-    private void createAccount(String email, String password) {
+    private void createAccount(final String email, final String password) {
         Log.d(TAG, "createAccount:" + email);
         if (!validateForm()) {
             return;
@@ -250,6 +257,12 @@ public class LoginCombActivity extends BaseActivity implements
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
+
+                            String cu = user.getUid();
+                            String email = user.getEmail();
+
+                            User userdata = new User(email);
+                            mDatabase.child("users").child(cu).setValue(userdata);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());

@@ -38,4 +38,12 @@
     <string name="nav_header_desc">Navigation header</string>
     <string name="action_settings">Settings</string>
 
+
+    <string name="spinner_name">운동 시간</string>
+    <!--<string-array name="time_array">-->
+        <!--<item>5분</item>-->
+        <!--<item>10분</item>-->
+        <!--<item>15분</item>-->
+        <!--<item>20분</item>-->
+    <!--</string-array>-->
 </resources>

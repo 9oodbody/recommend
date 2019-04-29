@@ -5,6 +5,7 @@ import android.support.annotation.NonNull;
 import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
@@ -62,6 +63,7 @@ public class LoginCombActivity extends BaseActivity implements
 //    private CallbackManager mCallbackManager;
 
     private DatabaseReference mDatabase;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -144,28 +146,28 @@ public class LoginCombActivity extends BaseActivity implements
     // [START onactivityresult]
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
-            super.onActivityResult(requestCode, resultCode, data);
+        super.onActivityResult(requestCode, resultCode, data);
 
-            //facebook login
+        //facebook login
 //            mCallbackManager.onActivityResult(requestCode, resultCode, data);
 
-            // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
-            if (requestCode == RC_SIGN_IN) {
-                Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
-                try {
-                    // Google Sign In was successful, authenticate with Firebase
-                    GoogleSignInAccount account = task.getResult(ApiException.class);
-                    firebaseAuthWithGoogle(account);
-                } catch (ApiException e) {
-                    // Google Sign In failed, update UI appropriately
-                    Log.w(TAG, "Google sign in failed", e);
-                    // [START_EXCLUDE]
-                    updateUI(null);
-                    // [END_EXCLUDE]
-                }
+        // Result returned from launching the Intent from GoogleSignInApi.getSignInIntent(...);
+        if (requestCode == RC_SIGN_IN) {
+            Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
+            try {
+                // Google Sign In was successful, authenticate with Firebase
+                GoogleSignInAccount account = task.getResult(ApiException.class);
+                firebaseAuthWithGoogle(account);
+            } catch (ApiException e) {
+                // Google Sign In failed, update UI appropriately
+                Log.w(TAG, "Google sign in failed", e);
+                // [START_EXCLUDE]
+                updateUI(null);
+                // [END_EXCLUDE]
             }
         }
-        // [END onactivityresult]
+    }
+    // [END onactivityresult]
 
     // [START auth_with_facebook]
 //    private void handleFacebookAccessToken(AccessToken token) {
@@ -258,6 +260,7 @@ public class LoginCombActivity extends BaseActivity implements
                             FirebaseUser user = mAuth.getCurrentUser();
                             updateUI(user);
 
+//--------signIn에서 db 저장 시도----------
                             String cu = user.getUid();
                             String email = user.getEmail();
 
@@ -266,7 +269,7 @@ public class LoginCombActivity extends BaseActivity implements
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(LoginCombActivity .this, "Authentication failed.",
+                            Toast.makeText(LoginCombActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
@@ -297,17 +300,17 @@ public class LoginCombActivity extends BaseActivity implements
                             Log.d(TAG, "signInWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
 //                            updateUI(user);
-                            if(user.isEmailVerified()){
+                            if (user.isEmailVerified()) {
                                 Intent mainpageIntent = new Intent(LoginCombActivity.this, MainActivity.class);
                                 startActivity(mainpageIntent);
-                            }else{
-                                Toast.makeText(LoginCombActivity .this, "이메일 인증을 해주세요",
+                            } else {
+                                Toast.makeText(LoginCombActivity.this, "이메일 인증을 해주세요",
                                         Toast.LENGTH_SHORT).show();
                             }
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginCombActivity .this, "Authentication failed.",
+                            Toast.makeText(LoginCombActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
                             updateUI(null);
                         }
@@ -368,12 +371,12 @@ public class LoginCombActivity extends BaseActivity implements
                         findViewById(R.id.verifyEmailButton).setEnabled(true);
 
                         if (task.isSuccessful()) {
-                            Toast.makeText(LoginCombActivity .this,
+                            Toast.makeText(LoginCombActivity.this,
                                     "Verification email sent to " + user.getEmail(),
                                     Toast.LENGTH_SHORT).show();
                         } else {
                             Log.e(TAG, "sendEmailVerification", task.getException());
-                            Toast.makeText(LoginCombActivity .this,
+                            Toast.makeText(LoginCombActivity.this,
                                     "Failed to send verification email.",
                                     Toast.LENGTH_SHORT).show();
                         }

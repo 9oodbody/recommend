@@ -10,9 +10,27 @@
         android:id="@+id/main_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
-        android:background="?attr/colorPrimary"
+        android:background="#ffffff"
         android:elevation="4dp"
         android:theme="@style/ThemeOverlay.AppCompat.ActionBar"
         app:popupTheme="@style/ThemeOverlay.AppCompat.Light"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginTop="65dp"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="메인 페이지" />
+        <Button
+            android:id="@+id/toMain"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="로그인으로"/>
+    </LinearLayout>
+
 
 </RelativeLayout>

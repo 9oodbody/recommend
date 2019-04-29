@@ -5,7 +5,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
@@ -50,11 +49,9 @@ public class SearchWorkoutActivity extends AppCompatActivity {
                 mDatabase.child("무산소").child("가슴").addValueEventListener(new ValueEventListener() {
                    @Override
                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                        for(DataSnapshot Data:dataSnapshot.getChildren()){
-                       Workout data = dataSnapshot.child("다이아몬드 푸시업").getValue(Workout.class);
+                            Workout data = dataSnapshot.child("다이아몬드 푸시업").getValue(Workout.class);
 
-                       System.out.println(data.level);
-
+                            System.out.println(data.level);
 
                    }
 

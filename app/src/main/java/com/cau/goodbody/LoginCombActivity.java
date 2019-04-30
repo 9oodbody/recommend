@@ -2,8 +2,10 @@ package com.cau.goodbody;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v7.widget.Toolbar;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
@@ -51,6 +53,8 @@ public class LoginCombActivity extends BaseActivity implements
     private EditText mEmailField;
     private EditText mPasswordField;
 
+    private Toolbar sToolbar;
+
     // [START declare_auth]
     private FirebaseAuth mAuth;
     // [END declare_auth]
@@ -69,6 +73,10 @@ public class LoginCombActivity extends BaseActivity implements
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_comb);
+
+        sToolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(sToolbar);
+        getSupportActionBar().setTitle("로그인");
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -458,4 +466,5 @@ public class LoginCombActivity extends BaseActivity implements
             revokeAccess();
         }
     }
+
 }

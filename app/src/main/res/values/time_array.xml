@@ -1,15 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string-array name="time_array_hour">
-        <item>0시간</item>
-        <item>1시간</item>
-        <item>2시간</item>
-        <item>3시간</item>
-    </string-array>
-    <string-array name="time_array_minute">
-        <item>5분</item>
-        <item>10분</item>
-        <item>15분</item>
-        <item>20분</item>
-    </string-array>
+    <!--<string-array name="time_array_hour">-->
+        <!--<item>0시간</item>-->
+        <!--<item>1시간</item>-->
+        <!--<item>2시간</item>-->
+        <!--<item>3시간</item>-->
+        <!--<item>4시간</item>-->
+        <!--<item>5시간</item>-->
+        <!--<item>6시간</item>-->
+        <!--<item>7시간</item>-->
+    <!--</string-array>-->
+    <!--<string-array name="time_array_minute">-->
+        <!--<item>5분</item>-->
+        <!--<item>10분</item>-->
+        <!--<item>15분</item>-->
+        <!--<item>20분</item>-->
+        <!--<item>25분</item>-->
+        <!--<item>30분</item>-->
+        <!--<item>35분</item>-->
+        <!--<item>40분</item>-->
+        <!--<item>45분</item>-->
+        <!--<item>50분</item>-->
+    <!--</string-array>-->
 </resources>

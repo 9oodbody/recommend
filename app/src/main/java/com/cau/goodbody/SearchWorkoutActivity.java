@@ -9,6 +9,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -28,8 +29,6 @@ public class SearchWorkoutActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_workout);
 
-        mDatabase = FirebaseDatabase.getInstance().getReference().child("운동");
-
         sToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(sToolbar);
         getSupportActionBar().setTitle("운동 기록");
@@ -43,47 +42,41 @@ public class SearchWorkoutActivity extends AppCompatActivity {
                 final String string_sW = searchWorkout.getText().toString();
 
 
-//                System.out.println(mDatabase.child("운동").child("무산소").child("가슴").child(string_sW).getKey());
+                mDatabase = FirebaseDatabase.getInstance().getReference();
 
+                mDatabase.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                        Workout data = dataSnapshot.child("운동").child(string_sW).getValue(Workout.class);
+                        if(data != null){
+//                            System.out.println(data.howto);
+                            Intent pageIntent = new Intent(SearchWorkoutActivity.this, DetailRecordActivity.class);
+                            pageIntent.putExtra("search_name", string_sW);
+                            startActivity(pageIntent);
+                        }else{
+                            Toast.makeText(SearchWorkoutActivity.this, "검색명을 확인해주세요", Toast.LENGTH_LONG).show();
+                        }
+                    }
 
-                mDatabase.child("무산소").child("가슴").addValueEventListener(new ValueEventListener() {
-                   @Override
-                   public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                            Workout data = dataSnapshot.child("다이아몬드 푸시업").getValue(Workout.class);
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError databaseError) {
 
-                            System.out.println(data.level);
+                    }
+                });
 
-                   }
-
-                       @Override
-                       public void onCancelled (@NonNull DatabaseError databaseError){
-
-                       }
-
-               });
-
-
-//                if (string_sW == mDatabase.child("운동").child("무산소").child("가슴").getKey()){
-//                    System.out.println("성공");
-//                }else{
-//                    System.out.println("실패");
-//                }
-
-                Intent pageIntent = new Intent(SearchWorkoutActivity.this, DetailRecordActivity.class);
-                pageIntent.putExtra("search_name",string_sW);
-                startActivity(pageIntent);
             }
         });
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
-        switch (item.getItemId()){
-            case android.R.id.home:{ //toolbar의 back키 눌렀을 때 동작
+        switch (item.getItemId()) {
+            case android.R.id.home: { //toolbar의 back키 눌렀을 때 동작
                 finish();
                 return true;
             }
         }
         return super.onOptionsItemSelected(item);
     }
+
 }

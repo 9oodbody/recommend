@@ -11,6 +11,75 @@
         android:layout_height="wrap_content"
         android:backgroundTint="#FFBF00"
         android:text="기록 추가하기"
-        android:textColor="#ffffff" />
+        android:textColor="#ffffff"
+        android:background="@drawable/button_background"
+        android:layout_margin="10dp" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#E6E6E6"
+            android:layout_margin="10dp">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="운동명"
+                android:layout_alignParentLeft="true"
+                android:paddingHorizontal="80dp"
+                android:paddingVertical="30dp"
+                android:textSize="20dp"/>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="운동시간"
+                android:layout_alignParentRight="true"
+                android:paddingHorizontal="80dp"
+                android:paddingVertical="30dp"
+                android:textSize="20dp"/>
+        </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E6E6E6"
+        android:layout_margin="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="운동명"
+            android:layout_alignParentLeft="true"
+            android:paddingHorizontal="80dp"
+            android:paddingVertical="30dp"
+            android:textSize="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="운동시간"
+            android:layout_alignParentRight="true"
+            android:paddingHorizontal="80dp"
+            android:paddingVertical="30dp"
+            android:textSize="20dp"/>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#E6E6E6"
+        android:layout_margin="10dp">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="운동명"
+            android:layout_alignParentLeft="true"
+            android:paddingHorizontal="80dp"
+            android:paddingVertical="30dp"
+            android:textSize="20dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="운동시간"
+            android:layout_alignParentRight="true"
+            android:paddingHorizontal="80dp"
+            android:paddingVertical="30dp"
+            android:textSize="20dp"/>
+    </RelativeLayout>
 
 </LinearLayout>

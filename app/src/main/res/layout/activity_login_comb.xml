@@ -11,24 +11,24 @@
         android:layout_height="wrap_content"
         android:background="#ffffff" />
 
-    <TextView
-        android:id="@+id/status"
-        style="@style/ThemeOverlay.MyTextDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/signed_out"
-        android:visibility="gone"
-        android:gravity="center_horizontal"
-        android:layout_marginTop="200dp"/>
+    <!--<TextView-->
+        <!--android:id="@+id/status"-->
+        <!--style="@style/ThemeOverlay.MyTextDetail"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/signed_out"-->
+        <!--android:visibility="gone"-->
+        <!--android:gravity="center_horizontal"-->
+        <!--android:layout_marginTop="200dp"/>-->
 
-    <TextView
-        android:id="@+id/detail"
-        style="@style/ThemeOverlay.MyTextDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Firebase User ID: 123456789abc"
-        android:visibility="gone"
-        android:gravity="center_horizontal"/>
+    <!--<TextView-->
+        <!--android:id="@+id/detail"-->
+        <!--style="@style/ThemeOverlay.MyTextDetail"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--tools:text="Firebase User ID: 123456789abc"-->
+        <!--android:visibility="gone"-->
+        <!--android:gravity="center_horizontal"/>-->
 
     <LinearLayout
         android:id="@+id/emailPasswordFields"

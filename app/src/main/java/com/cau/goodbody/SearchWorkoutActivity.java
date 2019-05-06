@@ -5,17 +5,25 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ListView;
 import android.widget.Toast;
+import android.widget.AdapterView;
 
+import com.google.firebase.database.ChildEventListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class SearchWorkoutActivity extends AppCompatActivity {
     private Toolbar sToolbar;
@@ -23,11 +31,54 @@ public class SearchWorkoutActivity extends AppCompatActivity {
     private Button searchWorkoutButton;
 
     private DatabaseReference mDatabase;
+    private String str;
+
+//    리스트뷰
+    ListView listView;
+    List fileList = new ArrayList<>();
+    ArrayAdapter adapter;
+    static boolean calledAlready = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_search_workout);
+
+//        ListView 시도
+        if(!calledAlready){
+            FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+            calledAlready = true;
+        }
+        listView=findViewById(R.id.listview_w);
+        adapter = new ArrayAdapter<String>(this,R.layout.activity_listitem,fileList);
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(mItemClickListener);
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference databaseRef = database.getReference("운동");
+
+        // read from the database
+        databaseRef.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                for(DataSnapshot fileSnapshot:dataSnapshot.getChildren()){
+                    str = fileSnapshot.getKey();
+                    if (str != "유산소" && str != "무산소"){
+                        Log.i("Tag: 값은 ",str);
+                        fileList.add(str);
+                    }
+//                    fileList.add(str);
+                }
+                adapter.notifyDataSetChanged();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+                Log.w("Tag: ","값 읽어오기 실패",databaseError.toException());
+            }
+        });
+
 
         sToolbar = findViewById(R.id.toolbar);
         setSupportActionBar(sToolbar);
@@ -66,6 +117,7 @@ public class SearchWorkoutActivity extends AppCompatActivity {
 
             }
         });
+
     }
 
     @Override
@@ -79,4 +131,12 @@ public class SearchWorkoutActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    AdapterView.OnItemClickListener mItemClickListener = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            String mes;
+            mes = "Select Item = "+fileList.get(position);
+            Toast.makeText(SearchWorkoutActivity.this, mes, Toast.LENGTH_SHORT).show();
+        }
+    };
 }

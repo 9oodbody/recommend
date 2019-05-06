@@ -75,6 +75,18 @@ public class DetailRecordActivity extends AppCompatActivity implements View.OnCl
             }
         });
 
+        spinner_m.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                choice_m = adspin2.getItem(position).toString();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
     }
 
     @Override
@@ -95,7 +107,9 @@ public class DetailRecordActivity extends AppCompatActivity implements View.OnCl
             RadioButton rd = findViewById(rg.getCheckedRadioButtonId());
             String str_level = rd.getText().toString();
 
-            Toast.makeText(getApplicationContext(),str_level+choice_h,Toast.LENGTH_LONG).show();
+            String total_choice = choice_h+" "+choice_m;
+
+            Toast.makeText(getApplicationContext(),str_level+" "+total_choice,Toast.LENGTH_LONG).show();
 
 
         }

@@ -66,8 +66,7 @@ public class LoginCombActivity extends BaseActivity implements
     // facebook login
 //    private CallbackManager mCallbackManager;
 
-    private DatabaseReference mDatabase;
-
+    private DatabaseReference mDatabase= FirebaseDatabase.getInstance().getReference();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -78,7 +77,7 @@ public class LoginCombActivity extends BaseActivity implements
         setSupportActionBar(sToolbar);
         getSupportActionBar().setTitle("로그인");
 
-        mDatabase = FirebaseDatabase.getInstance().getReference();
+//        mDatabase = FirebaseDatabase.getInstance().getReference();
 
         // Views
         mLogo = findViewById(R.id.logo);
@@ -147,7 +146,7 @@ public class LoginCombActivity extends BaseActivity implements
         super.onStart();
         // Check if user is signed in (non-null) and update UI accordingly.
         FirebaseUser currentUser = mAuth.getCurrentUser();
-        updateUI(currentUser);
+//        updateUI(currentUser);
     }
     // [END on_start_check_user]
 
@@ -170,7 +169,7 @@ public class LoginCombActivity extends BaseActivity implements
                 // Google Sign In failed, update UI appropriately
                 Log.w(TAG, "Google sign in failed", e);
                 // [START_EXCLUDE]
-                updateUI(null);
+//                updateUI(null);
                 // [END_EXCLUDE]
             }
         }
@@ -233,12 +232,12 @@ public class LoginCombActivity extends BaseActivity implements
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "signInWithCredential:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+//                            updateUI(user);
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithCredential:failure", task.getException());
                             Snackbar.make(findViewById(R.id.main_layout), "Authentication Failed.", Snackbar.LENGTH_SHORT).show();
-                            updateUI(null);
+//                            updateUI(null);
                         }
 
                         // [START_EXCLUDE]
@@ -266,20 +265,25 @@ public class LoginCombActivity extends BaseActivity implements
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
                             FirebaseUser user = mAuth.getCurrentUser();
-                            updateUI(user);
+//                            updateUI(user);
 
 //--------signIn에서 db 저장 시도----------
-                            String cu = user.getUid();
-                            String email = user.getEmail();
-
-                            User userdata = new User(email);
-                            mDatabase.child("users").child(cu).setValue(userdata);
+//                            String cu = user.getUid();
+//                            String email = user.getEmail();
+//
+//                            String name = "장유즤니";
+//                            User userdata = new User(name,email);
+////                            User userdata = new User(email);
+//                            Log.d(TAG,"User UID:"+user.getUid()+"/ User Email:"+user.getEmail());
+////                            mDatabase.child("users").push().child(cu).setValue(userdata);
+//                            mDatabase.child("users").child(cu).child("name").setValue(userdata.getName());
+//                            mDatabase.child("users").child(cu).child("email").setValue(userdata.getEmail());
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
                             Toast.makeText(LoginCombActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+//                            updateUI(null);
                         }
 
                         // [START_EXCLUDE]
@@ -310,6 +314,7 @@ public class LoginCombActivity extends BaseActivity implements
 //                            updateUI(user);
                             if (user.isEmailVerified()) {
                                 Intent mainpageIntent = new Intent(LoginCombActivity.this, MainActivity.class);
+                                mainpageIntent.putExtra("current_user",user);
                                 startActivity(mainpageIntent);
                             } else {
                                 Toast.makeText(LoginCombActivity.this, "이메일 인증을 해주세요",
@@ -320,7 +325,7 @@ public class LoginCombActivity extends BaseActivity implements
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
                             Toast.makeText(LoginCombActivity.this, "Authentication failed.",
                                     Toast.LENGTH_SHORT).show();
-                            updateUI(null);
+//                            updateUI(null);
                         }
 
                         // [START_EXCLUDE]
@@ -352,7 +357,7 @@ public class LoginCombActivity extends BaseActivity implements
                 new OnCompleteListener<Void>() {
                     @Override
                     public void onComplete(@NonNull Task<Void> task) {
-                        updateUI(null);
+//                        updateUI(null);
                     }
                 });
     }
@@ -360,7 +365,7 @@ public class LoginCombActivity extends BaseActivity implements
     private void signOut() {
         mAuth.signOut();
 //        LoginManager.getInstance().logOut();
-        updateUI(null);
+//        updateUI(null);
     }
 
     private void sendEmailVerification() {
@@ -419,32 +424,32 @@ public class LoginCombActivity extends BaseActivity implements
     private void updateUI(FirebaseUser user) {
         hideProgressDialog();
         if (user != null) {
-            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt,
-                    user.getEmail(), user.isEmailVerified()));
-            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
-
-            findViewById(R.id.status).setVisibility(View.VISIBLE);
-            findViewById(R.id.detail).setVisibility(View.VISIBLE);
-            findViewById(R.id.logo).setVisibility(View.GONE);
-            findViewById(R.id.loginInput).setVisibility(View.GONE);
-            findViewById(R.id.emailPasswordButtons).setVisibility(View.GONE);
-            findViewById(R.id.emailPasswordFields).setVisibility(View.GONE);
-            findViewById(R.id.signedInButtons).setVisibility(View.VISIBLE);
+//            mStatusTextView.setText(getString(R.string.emailpassword_status_fmt,
+//                    user.getEmail(), user.isEmailVerified()));
+//            mDetailTextView.setText(getString(R.string.firebase_status_fmt, user.getUid()));
+//
+//            findViewById(R.id.status).setVisibility(View.VISIBLE);
+//            findViewById(R.id.detail).setVisibility(View.VISIBLE);
+//            findViewById(R.id.logo).setVisibility(View.GONE);
+//            findViewById(R.id.loginInput).setVisibility(View.GONE);
+//            findViewById(R.id.emailPasswordButtons).setVisibility(View.GONE);
+//            findViewById(R.id.emailPasswordFields).setVisibility(View.GONE);
+//            findViewById(R.id.signedInButtons).setVisibility(View.VISIBLE);
 //            findViewById(R.id.signOutAndDisconnect).setVisibility(View.VISIBLE);
 
-            findViewById(R.id.verifyEmailButton).setEnabled(!user.isEmailVerified());
-            System.out.println(user.isEmailVerified());
+//            findViewById(R.id.verifyEmailButton).setEnabled(!user.isEmailVerified());
+//            System.out.println(user.isEmailVerified());
         } else {
-            mStatusTextView.setText(R.string.signed_out);
-            mDetailTextView.setText(null);
-
-            findViewById(R.id.status).setVisibility(View.GONE);
-            findViewById(R.id.detail).setVisibility(View.GONE);
-            findViewById(R.id.logo).setVisibility(View.VISIBLE);
-            findViewById(R.id.loginInput).setVisibility(View.VISIBLE);
-            findViewById(R.id.emailPasswordButtons).setVisibility(View.VISIBLE);
-            findViewById(R.id.emailPasswordFields).setVisibility(View.VISIBLE);
-            findViewById(R.id.signedInButtons).setVisibility(View.GONE);
+//            mStatusTextView.setText(R.string.signed_out);
+//            mDetailTextView.setText(null);
+//
+//            findViewById(R.id.status).setVisibility(View.GONE);
+//            findViewById(R.id.detail).setVisibility(View.GONE);
+//            findViewById(R.id.logo).setVisibility(View.VISIBLE);
+//            findViewById(R.id.loginInput).setVisibility(View.VISIBLE);
+//            findViewById(R.id.emailPasswordButtons).setVisibility(View.VISIBLE);
+//            findViewById(R.id.emailPasswordFields).setVisibility(View.VISIBLE);
+//            findViewById(R.id.signedInButtons).setVisibility(View.GONE);
 //            findViewById(R.id.signOutAndDisconnect).setVisibility(View.GONE);
         }
     }
@@ -453,7 +458,9 @@ public class LoginCombActivity extends BaseActivity implements
     public void onClick(View v) {
         int i = v.getId();
         if (i == R.id.emailCreateAccountButton) {
-            createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
+//            createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
+            Intent mainpageIntent = new Intent(LoginCombActivity.this, SignUpActivity.class);
+            startActivity(mainpageIntent);
         } else if (i == R.id.emailSignInButton) {
             signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
         } else if (i == R.id.signOutButton) {

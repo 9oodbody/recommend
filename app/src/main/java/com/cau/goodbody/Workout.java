@@ -1,7 +1,5 @@
 package com.cau.goodbody;
 
-import java.util.Locale;
-
 public class Workout {
     String category;
     String equip;

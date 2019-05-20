@@ -1,10 +1,11 @@
 package com.cau.goodbody;
+//로그인 페이지로 돌아가는 거 아직 못함....
 
-import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -21,9 +22,6 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-import java.util.HashMap;
-import java.util.Map;
-
 public class SignUpActivity extends BaseActivity {
 
     private static final String TAG = "회원가입";
@@ -34,13 +32,9 @@ public class SignUpActivity extends BaseActivity {
     private DatabaseReference mDatabase;
 
     private Toolbar sToolbar;
-    private EditText mNameField;
-    private EditText mEmailField;
-    private EditText mPasswordField;
-    private EditText mCheckPasswordField;
-    private RadioGroup rgSex;
+    private EditText mNameField,mEmailField,mPasswordField,mCheckPasswordField,mHeightField,mBirthField;
+    private RadioGroup rgSex,rgGoal;
     private Button signUpBtn;
-    private Button verifyBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,32 +48,16 @@ public class SignUpActivity extends BaseActivity {
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        mNameField = findViewById(R.id.fieldName);
         mEmailField = findViewById(R.id.fieldEmail);
         mPasswordField = findViewById(R.id.fieldPassword);
         mCheckPasswordField = findViewById(R.id.fieldCheckPassword);
 
         rgSex = findViewById(R.id.rg_sex);
+        rgGoal = findViewById(R.id.rg_goal);
 
         // [START initialize_auth]
         mAuth = FirebaseAuth.getInstance();
         // [END initialize_auth]
-
-//        verifyBtn = findViewById(R.id.verifyEmailButton);
-//        verifyBtn.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                sendEmailVerification();
-//            }
-//        });
-
-        verifyBtn = findViewById(R.id.verifyEmailButton);
-        verifyBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
-            }
-        });
 
         signUpBtn = findViewById(R.id.emailCreateAccountButton);
         signUpBtn.setOnClickListener(new View.OnClickListener() {
@@ -89,30 +67,14 @@ public class SignUpActivity extends BaseActivity {
                 String ch_pwd = mCheckPasswordField.getText().toString();
 
                 if(pwd.equals(ch_pwd)){
-                    FirebaseUser user = mAuth.getCurrentUser();
-                    Toast.makeText(SignUpActivity.this, "로그인 화면으로 넘어갑니다.", Toast.LENGTH_LONG).show();
-                    mAuth.signOut();
-                    finish();
+                    createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
+//                    FirebaseUser user = mAuth.getCurrentUser();
+//                    Toast.makeText(SignUpActivity.this, "로그인 화면으로 넘어갑니다.", Toast.LENGTH_LONG).show();
+//                    mAuth.signOut();
                 }else{
                     Toast.makeText(SignUpActivity.this, "비밀번호를 확인해주세요.", Toast.LENGTH_LONG).show();
                 }
-
-//                if(pwd.equals(ch_pwd)){
-//                    FirebaseUser user = mAuth.getCurrentUser();
-//                    System.out.println("유저다!!!!"+user.getEmail());
-//                    System.out.println("유저다!!!!22222"+user.isEmailVerified());
-//                    if (user.isEmailVerified()) {
-//                        Toast.makeText(SignUpActivity.this, "\t회원가입 완료\n로그인 화면으로 넘어갑니다.",
-//                                Toast.LENGTH_LONG).show();
-//                        mAuth.signOut();
-//                        finish();
-//                    } else {
-//                        Toast.makeText(SignUpActivity.this, "이메일 인증을 해주세요.",
-//                                Toast.LENGTH_LONG).show();
-//                    }
-//                }else{
-//                    Toast.makeText(SignUpActivity.this, "비밀번호를 확인해주세요.", Toast.LENGTH_LONG).show();
-//                }
+                mAuth.signOut();
             }
         });
     }
@@ -133,38 +95,59 @@ public class SignUpActivity extends BaseActivity {
                         if (task.isSuccessful()) {
                             // Sign in success, update UI with the signed-in user's information
                             Log.d(TAG, "createUserWithEmail:success");
-                            FirebaseUser user = mAuth.getCurrentUser();
+                            final FirebaseUser user = mAuth.getCurrentUser();
                             String cu = user.getUid();
-                            String email = user.getEmail();
+                            final String email = user.getEmail();
 
+                            //이름 받아오기
                             mNameField = findViewById(R.id.fieldName);
                             String name = mNameField.getText().toString();
+                            //성별 받아오기
                             RadioButton rd = findViewById(rgSex.getCheckedRadioButtonId());
                             String str_sex = rd.getText().toString();
+                            //키 받아오기
+                            mHeightField = findViewById(R.id.fieldHeight);
+                            int height = Integer.parseInt(mHeightField.getText().toString());
+                            //출생년도 받아오기
+                            mBirthField = findViewById(R.id.fieldBirth);
+                            int birth = Integer.parseInt(mBirthField.getText().toString());
+                            int age = 2019-birth+1;
+                            //목표 받아오기
+                            RadioButton rd2 = findViewById(rgGoal.getCheckedRadioButtonId());
+                            String str_goal = rd2.getText().toString();
 
-                            User userdata = new User(name,email,str_sex);
+                            User userdata = new User(name,email,str_sex,height,age,str_goal);
 
                             mDatabase.child("users").child(cu).child("name").setValue(userdata.getName());
                             mDatabase.child("users").child(cu).child("email").setValue(userdata.getEmail());
                             mDatabase.child("users").child(cu).child("sex").setValue(userdata.getSex());
+                            mDatabase.child("users").child(cu).child("height").setValue(userdata.getHeight());
+                            mDatabase.child("users").child(cu).child("age").setValue(userdata.getAge());
+                            mDatabase.child("users").child(cu).child("goal").setValue(userdata.getGoal());
 
+                            user.sendEmailVerification()
+                                    .addOnCompleteListener(SignUpActivity.this, new OnCompleteListener<Void>() {
+                                        @Override
+                                        public void onComplete(@NonNull Task<Void> task) {
+                                            // [START_EXCLUDE]
+                                            // Re-enable button
+//                        findViewById(R.id.verifyEmailButton).setEnabled(true);
 
-                            sendEmailVerification();
-//                            verifyBtn = findViewById(R.id.verifyEmailButton);
-//                            verifyBtn.setOnClickListener(new View.OnClickListener() {
-//                                @Override
-//                                public void onClick(View v) {
-//                                    sendEmailVerification();
-//                                }
-//                            });
-//                            if(user.isEmailVerified()){
-//                                Toast.makeText(SignUpActivity.this, "회원가입 완료\n로그인 화면으로 넘어갑니다.",
-//                                        Toast.LENGTH_LONG).show();
-//                                finish();
-//                            }else{
-//                                Toast.makeText(SignUpActivity.this, "이메일 인증을 해주세요.",
-//                                        Toast.LENGTH_LONG).show();
-//                            }
+                                            if (task.isSuccessful()) {
+                                                Toast.makeText(SignUpActivity.this,
+                                                        "Verification email sent to " + user.getEmail(),
+                                                        Toast.LENGTH_LONG).show();
+                                            } else {
+                                                Log.e(TAG, "sendEmailVerification", task.getException());
+                                                Toast.makeText(SignUpActivity.this,
+                                                        "Failed to send verification email.",
+                                                        Toast.LENGTH_LONG).show();
+                                            }
+                                            // [END_EXCLUDE]
+                                        }
+                                    });
+                            // [END send_email_verification]
+
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
@@ -180,7 +163,7 @@ public class SignUpActivity extends BaseActivity {
         // [END create_user_with_email]
 //        Intent mainpageIntent = new Intent(SignUpActivity.this, LoginCombActivity.class);
 //        startActivity(mainpageIntent);
-    }
+}
 
     private boolean validateForm() {
         boolean valid = true;
@@ -204,34 +187,14 @@ public class SignUpActivity extends BaseActivity {
         return valid;
     }
 
-    private void sendEmailVerification() {
-        // Disable button
-//        findViewById(R.id.verifyEmailButton).setEnabled(false);
-
-        // Send verification email
-        // [START send_email_verification]
-        final FirebaseUser user = mAuth.getCurrentUser();
-        user.sendEmailVerification()
-                .addOnCompleteListener(this, new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        // [START_EXCLUDE]
-                        // Re-enable button
-//                        findViewById(R.id.verifyEmailButton).setEnabled(true);
-
-                        if (task.isSuccessful()) {
-                            Toast.makeText(SignUpActivity.this,
-                                    "Verification email sent to " + user.getEmail(),
-                                    Toast.LENGTH_LONG).show();
-                        } else {
-                            Log.e(TAG, "sendEmailVerification", task.getException());
-                            Toast.makeText(SignUpActivity.this,
-                                    "Failed to send verification email.",
-                                    Toast.LENGTH_LONG).show();
-                        }
-                        // [END_EXCLUDE]
-                    }
-                });
-        // [END send_email_verification]
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: { //toolbar의 back키 눌렀을 때 동작
+                finish();
+                return true;
+            }
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

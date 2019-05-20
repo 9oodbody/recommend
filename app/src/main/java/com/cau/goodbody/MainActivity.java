@@ -28,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private Button signOutBtn;
     private Button verifyEmailBtn;
     private Button toTextRecord;
+    private Button toMealRecom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +74,16 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 Intent mainpageIntent = new Intent(MainActivity.this, TextRecordActivity.class);
                 mainpageIntent.putExtra("current_user",c_user);
+                startActivity(mainpageIntent);
+            }
+        });
+
+        toMealRecom = findViewById(R.id.to_meal_recommendation);
+        toMealRecom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mainpageIntent = new Intent(MainActivity.this, MealRecommendation.class);
+//                mainpageIntent.putExtra("current_user",c_user);
                 startActivity(mainpageIntent);
             }
         });

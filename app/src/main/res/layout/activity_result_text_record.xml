@@ -10,189 +10,307 @@
         android:layout_height="wrap_content"
         android:background="#ffffff" />
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center"
+        android:padding="20dp">
+        <TextView
+            android:id="@+id/username"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="땡땡땡"
+            android:textSize="35dp"
+            android:layout_marginRight="10dp"/>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="님의 Inbody 결과"
+            android:textSize="20dp"/>
+    </LinearLayout>
+
     <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:layout_marginBottom="20dp">
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_bottom">
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="체중 :"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:text="키"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
+            <TextView
+                android:id="@+id/print_height"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="15dp"/>
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:text="체중"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
             <TextView
                 android:id="@+id/print_w"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="15dp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:text="BMI"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
             <TextView
+                android:id="@+id/print_bmi"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="15dp"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_bottom">
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="체수분 :"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:text="체수분"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
             <TextView
                 android:id="@+id/print_bw"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="15dp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_bottom">
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="단백질 :"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:text="단백질"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
             <TextView
                 android:id="@+id/print_pt"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="15dp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_bottom">
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="무기질 :"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:text="무기질"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
             <TextView
                 android:id="@+id/print_mr"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="15dp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_bottom">
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="체지방 :"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:text="체지방"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
             <TextView
                 android:id="@+id/print_fm"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="15dp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="표준 범위 :"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:text="표준 범위"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
             <TextView
                 android:id="@+id/print_sd_fm"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="15dp"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_bottom">
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="근육량 :"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:text="근육량"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
             <TextView
                 android:id="@+id/print_mm"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="15dp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_bottom">
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="골격근량 :"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:text="골격근량"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
             <TextView
                 android:id="@+id/print_smm"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="15dp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="표준 범위 :"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:text="표준 범위"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
             <TextView
                 android:id="@+id/print_sd_smm"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="15dp"/>
         </TableRow>
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/border_bottom">
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:text="제지방량 :"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:text="제지방량"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
             <TextView
                 android:id="@+id/print_fc"
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="15dp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
             <TextView
                 android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"/>
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:textSize="20dp"/>
         </TableRow>
     </TableLayout>
+
 
 </LinearLayout>

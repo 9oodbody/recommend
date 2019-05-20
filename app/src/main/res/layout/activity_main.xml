@@ -70,6 +70,12 @@
             android:layout_height="wrap_content"
             android:text="결과지 입력"
             android:layout_gravity="center"/>
+        <Button
+            android:id="@+id/to_meal_recommendation"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="식단 추천"
+            android:layout_gravity="center"/>
     </LinearLayout>
 
 

@@ -8,4 +8,6 @@ public class Food {
     public Food(int kcal){
         this.kcal = kcal;
     }
+
+    public int getKcal(){return kcal;}
 }

@@ -5,23 +5,30 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <TextView
-        android:id="@+id/status"
-        style="@style/ThemeOverlay.MyTextDetail"
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="@string/signed_out"
-        android:visibility="gone"
-        android:gravity="center_horizontal"/>
+        android:background="#ffffff" />
 
-    <TextView
-        android:id="@+id/detail"
-        style="@style/ThemeOverlay.MyTextDetail"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        tools:text="Firebase User ID: 123456789abc"
-        android:visibility="gone"
-        android:gravity="center_horizontal"/>
+    <!--<TextView-->
+        <!--android:id="@+id/status"-->
+        <!--style="@style/ThemeOverlay.MyTextDetail"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--android:text="@string/signed_out"-->
+        <!--android:visibility="gone"-->
+        <!--android:gravity="center_horizontal"-->
+        <!--android:layout_marginTop="200dp"/>-->
+
+    <!--<TextView-->
+        <!--android:id="@+id/detail"-->
+        <!--style="@style/ThemeOverlay.MyTextDetail"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content"-->
+        <!--tools:text="Firebase User ID: 123456789abc"-->
+        <!--android:visibility="gone"-->
+        <!--android:gravity="center_horizontal"/>-->
 
     <LinearLayout
         android:id="@+id/emailPasswordFields"
@@ -80,25 +87,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="16dp"
-            android:orientation="vertical">
+            android:orientation="horizontal">
 
             <Button
                 android:id="@+id/emailSignInButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:tag="custom_login_button"
                 android:text="@string/sign_in"
+                android:background="@drawable/button_background"
+                android:backgroundTint="#A4A4A4"
+                android:layout_marginRight="5dp"
                 android:textColor="#000000" />
 
             <Button
                 android:id="@+id/emailCreateAccountButton"
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:tag="custom_signup_button"
                 android:text="@string/create_account"
-                android:textColor="#000000" />
+                android:background="@drawable/button_background"
+                android:backgroundTint="#5882FA"
+                android:textColor="#ffffff" />
 
         </LinearLayout>
 

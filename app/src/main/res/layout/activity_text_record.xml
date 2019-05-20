@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ffffff" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingVertical="40dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/body_water"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="체수분"
+                android:layout_margin="10dp"/>
+
+            <EditText
+                android:id="@+id/body_water_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/body_water"
+                android:layout_marginHorizontal="10dp"
+                android:inputType="numberDecimal"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/protein"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="단백질"
+                android:layout_margin="10dp"/>
+
+            <EditText
+                android:id="@+id/protein_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/protein"
+                android:layout_marginHorizontal="10dp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/mineral"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="무기질"
+                android:layout_margin="10dp"/>
+
+            <EditText
+                android:id="@+id/mineral_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/mineral"
+                android:layout_marginHorizontal="10dp"/>
+        </RelativeLayout>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/fat_mass"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="체지방"
+                android:layout_margin="10dp"/>
+
+            <EditText
+                android:id="@+id/fat_mass_et"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/fat_mass"
+                android:layout_marginHorizontal="10dp"/>
+        </RelativeLayout>
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/text_record_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:backgroundTint="#5882FA"
+        android:text="입력하기"
+        android:textColor="#ffffff"
+        android:background="@drawable/button_background"
+        android:layout_margin="10dp"
+        android:layout_gravity="bottom"/>
+
+
+</LinearLayout>

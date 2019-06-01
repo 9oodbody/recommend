@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mDetailTextView;
     private Button signOutBtn;
     private Button verifyEmailBtn;
-    private Button toTextRecord;
+    private Button toTextRecord,toResultTextRecord;
     private Button toMealRecom;
 
     @Override
@@ -73,6 +73,16 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent mainpageIntent = new Intent(MainActivity.this, TextRecordActivity.class);
+                mainpageIntent.putExtra("current_user",c_user);
+                startActivity(mainpageIntent);
+            }
+        });
+
+        toResultTextRecord = findViewById(R.id.to_result_text_record);
+        toResultTextRecord.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mainpageIntent = new Intent(MainActivity.this, ResultTextRecordActivity.class);
                 mainpageIntent.putExtra("current_user",c_user);
                 startActivity(mainpageIntent);
             }

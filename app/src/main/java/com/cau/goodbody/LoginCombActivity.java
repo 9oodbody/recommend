@@ -323,14 +323,16 @@ public class LoginCombActivity extends BaseActivity implements
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            Toast.makeText(LoginCombActivity.this, "Authentication failed.",
+                            Toast.makeText(LoginCombActivity.this, "로그인 실패",
                                     Toast.LENGTH_SHORT).show();
 //                            updateUI(null);
                         }
 
                         // [START_EXCLUDE]
                         if (!task.isSuccessful()) {
-                            mStatusTextView.setText(R.string.auth_failed);
+//                            mStatusTextView.setText(R.string.auth_failed);
+                            Toast.makeText(LoginCombActivity.this, "로그인 실패",
+                                    Toast.LENGTH_SHORT).show();
                         }
                         hideProgressDialog();
                         // [END_EXCLUDE]

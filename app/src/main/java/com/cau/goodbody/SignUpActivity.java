@@ -1,6 +1,6 @@
 package com.cau.goodbody;
-//로그인 페이지로 돌아가는 거 아직 못함....
 
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,6 +14,7 @@ import android.widget.RadioGroup;
 import android.widget.Toast;
 import android.support.v7.widget.Toolbar;
 
+import com.facebook.login.Login;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
@@ -34,7 +35,7 @@ public class SignUpActivity extends BaseActivity {
     private Toolbar sToolbar;
     private EditText mNameField,mEmailField,mPasswordField,mCheckPasswordField,mHeightField,mBirthField;
     private RadioGroup rgSex,rgGoal;
-    private Button signUpBtn;
+    private Button signUpBtn,toLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,13 +69,17 @@ public class SignUpActivity extends BaseActivity {
 
                 if(pwd.equals(ch_pwd)){
                     createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
-//                    FirebaseUser user = mAuth.getCurrentUser();
-//                    Toast.makeText(SignUpActivity.this, "로그인 화면으로 넘어갑니다.", Toast.LENGTH_LONG).show();
-//                    mAuth.signOut();
                 }else{
                     Toast.makeText(SignUpActivity.this, "비밀번호를 확인해주세요.", Toast.LENGTH_LONG).show();
                 }
+            }
+        });
+        toLogin = findViewById(R.id.toLoginPage);
+        toLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
                 mAuth.signOut();
+                startActivity(new Intent(SignUpActivity.this, LoginCombActivity.class));
             }
         });
     }
@@ -130,17 +135,23 @@ public class SignUpActivity extends BaseActivity {
                                         @Override
                                         public void onComplete(@NonNull Task<Void> task) {
                                             // [START_EXCLUDE]
-                                            // Re-enable button
-//                        findViewById(R.id.verifyEmailButton).setEnabled(true);
 
                                             if (task.isSuccessful()) {
                                                 Toast.makeText(SignUpActivity.this,
-                                                        "Verification email sent to " + user.getEmail(),
+                                                        "메일 발송  " + user.getEmail(),
                                                         Toast.LENGTH_LONG).show();
+                                                mNameField.getText().clear();
+                                                mEmailField.getText().clear();
+                                                mPasswordField.getText().clear();
+                                                mCheckPasswordField.getText().clear();
+                                                mHeightField.getText().clear();
+                                                mBirthField.getText().clear();
+                                                rgSex.clearCheck();
+                                                rgGoal.clearCheck();
                                             } else {
                                                 Log.e(TAG, "sendEmailVerification", task.getException());
                                                 Toast.makeText(SignUpActivity.this,
-                                                        "Failed to send verification email.",
+                                                        "메일 발송 실패",
                                                         Toast.LENGTH_LONG).show();
                                             }
                                             // [END_EXCLUDE]
@@ -151,7 +162,7 @@ public class SignUpActivity extends BaseActivity {
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            Toast.makeText(SignUpActivity.this, "Authentication failed.",
+                            Toast.makeText(SignUpActivity.this, "이미 가입된 메일입니다.",
                                     Toast.LENGTH_SHORT).show();
                         }
 
@@ -160,9 +171,6 @@ public class SignUpActivity extends BaseActivity {
                         // [END_EXCLUDE]
                     }
                 });
-        // [END create_user_with_email]
-//        Intent mainpageIntent = new Intent(SignUpActivity.this, LoginCombActivity.class);
-//        startActivity(mainpageIntent);
 }
 
     private boolean validateForm() {

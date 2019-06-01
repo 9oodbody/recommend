@@ -10,12 +10,228 @@
         android:layout_height="wrap_content"
         android:background="#ffffff" />
 
-    <com.prolificinteractive.materialcalendarview.MaterialCalendarView
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        android:id="@+id/calendarView"
+    <!--<LinearLayout-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="50dp"-->
+        <!--android:background="#E6E6E6"></LinearLayout>-->
+
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:mcv_showOtherDates="all"
-        app:mcv_selectionColor="#00F"
-        />
+        android:layout_height="70dp"
+        android:background="#5882FA"
+        android:layout_marginBottom="15dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="섭취량"
+            android:textColor="#ffffff"
+            android:paddingLeft="20dp"
+            android:layout_centerVertical="true"/>
+        <TextView
+            android:id="@+id/total_kcal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:textColor="#ffffff"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="5dp"
+            android:textSize="25dp"
+            android:layout_toLeftOf="@id/print_kcal"/>
+        <TextView
+            android:id="@+id/print_kcal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Kcal"
+            android:textColor="#ffffff"
+            android:textSize="30dp"
+            android:gravity="right"
+            android:paddingRight="30dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"/>
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:layout_marginBottom="15dp"
+        android:background="#E6E6E6">
+
+        <android.support.design.widget.FloatingActionButton
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/fab_breakfast"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="15sp"
+            android:backgroundTint="#5882FA"
+            android:src="@drawable/ic_add_black_24dp"
+            app:borderWidth="0dp"
+            app:fabCustomSize="40dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/fab_breakfast"
+            android:text="아침"
+            android:textColor="#000000"
+            android:textSize="20dp" />
+
+        <TextView
+            android:id="@+id/ment_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="20dp"
+            android:text="식단을 기록해주세요!"
+            android:textSize="15dp"
+            android:visibility="visible"/>
+
+        <LinearLayout
+            android:id="@+id/ll_b"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="20dp"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/search_result_b"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="음식 이름"
+                android:paddingRight="10dp"/>
+
+            <TextView
+                android:id="@+id/search_kcal_b"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="칼로리"
+                android:paddingRight="20dp"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="#E6E6E6"
+        android:layout_marginBottom="15dp">
+
+        <android.support.design.widget.FloatingActionButton
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/fab_lunch"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="15sp"
+            android:backgroundTint="#5882FA"
+            android:src="@drawable/ic_add_black_24dp"
+            app:borderWidth="0dp"
+            app:fabCustomSize="40dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="점심"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/fab_lunch"/>
+        <TextView
+            android:id="@+id/ment_l"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="식단을 기록해주세요!"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:paddingRight="20dp"/>
+
+        <LinearLayout
+            android:id="@+id/ll_l"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="20dp"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/search_result_l"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="음식 이름"
+                android:paddingRight="10dp"/>
+
+            <TextView
+                android:id="@+id/search_kcal_l"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="칼로리"
+                android:paddingRight="20dp"/>
+        </LinearLayout>
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="90dp"
+        android:background="#E6E6E6"
+        android:layout_marginBottom="15dp">
+
+        <android.support.design.widget.FloatingActionButton
+            xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:id="@+id/fab_dinner"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_centerVertical="true"
+            android:layout_marginHorizontal="15sp"
+            android:backgroundTint="#5882FA"
+            android:src="@drawable/ic_add_black_24dp"
+            app:borderWidth="0dp"
+            app:fabCustomSize="40dp" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="저녁"
+            android:textColor="#000000"
+            android:textSize="20dp"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@id/fab_dinner"/>
+        <TextView
+            android:id="@+id/ment_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="15dp"
+            android:text="식단을 기록해주세요!"
+            android:layout_centerVertical="true"
+            android:layout_alignParentRight="true"
+            android:paddingRight="20dp"/>
+
+        <LinearLayout
+            android:id="@+id/ll_d"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:paddingRight="20dp"
+            android:visibility="gone">
+            <TextView
+                android:id="@+id/search_result_d"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="음식 이름"
+                android:paddingRight="10dp"/>
+
+            <TextView
+                android:id="@+id/search_kcal_d"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="right"
+                android:text="칼로리"
+                android:paddingRight="20dp"/>
+        </LinearLayout>
+    </RelativeLayout>
 </LinearLayout>

@@ -19,10 +19,15 @@ public class MealRecommendation extends AppCompatActivity {
     private Toolbar sToolbar;
     private DatabaseReference mDatabase;
 
-    int height=156, weight=46, american_age=22;
-    String sex="여자";
-    String goal="다이어트";
+//    int height=156, weight=46, american_age=22;
+//    String sex="여자";
+//    String goal="다이어트";
+//    double BMR;
+
+    int height,weight,american_age;
+    String sex,goal;
     double BMR;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,10 +52,10 @@ public class MealRecommendation extends AppCompatActivity {
                 }else{
                     BMR = 447.593+(9.247*weight)+(3.098*height)-(4.330*american_age);
                 }
-
+                System.out.println("기초대사량 BMR: "+BMR);
                 //기초대사량으로 한 끼 권장섭취량 계산
                 double recommended_intake = BMR * 1.55 / 3;
-
+                System.out.println("한 끼 권장섭취량: "+recommended_intake);
                 //순서대로 한 끼 권장 탄수화물, 단백질, 지방 변수 선언
                 double rec_c,rec_p,rec_l;
 
@@ -73,8 +78,8 @@ public class MealRecommendation extends AppCompatActivity {
                 }
 
                 int numMeal=0;
-                Meal[] meals = new Meal[10];
-                MealDifference[] meals_d = new MealDifference[10];
+                Meal[] meals = new Meal[71];
+                MealDifference[] meals_d = new MealDifference[71];
 
                 for(DataSnapshot fileSnapshot:dataSnapshot.getChildren()){
                     //반복문으로 식단 DB 받아오기
@@ -88,7 +93,7 @@ public class MealRecommendation extends AppCompatActivity {
 
                     //탄,단,지 차이 값의 총합 계산
                     meals_d[numMeal].sum_dif = abs_c + abs_p + abs_l;
-                    Log.i(TAG,"식단["+numMeal+"] 탄수화물 차이: "+ meals_d[numMeal].dif_carbohydrate+" 단백질 차이: "+meals_d[numMeal].dif_protein+" 지방 차이:"+meals_d[numMeal].dif_lipid+"  ====> 차이 합: "+meals_d[numMeal].sum_dif);
+                    Log.i(TAG,"식단"+numMeal+" 탄수화물 차: "+ meals_d[numMeal].dif_carbohydrate+" 단백질 차: "+meals_d[numMeal].dif_protein+" 지방 차:"+meals_d[numMeal].dif_lipid+"  ====> 차이 합: "+meals_d[numMeal].sum_dif);
                     numMeal++;
                 }
                 double min = meals_d[0].sum_dif;
@@ -100,8 +105,7 @@ public class MealRecommendation extends AppCompatActivity {
                         min_index = i;
                     }
                 }
-                Log.i(TAG,"최소 차이 합: "+meals_d[min_index].sum_dif+"  index => "+min_index);
-                System.out.println("오늘의 추천 식단: "+meals[min_index].getComposition());
+                System.out.println("추천 식단: "+meals[min_index].getComposition()+" 최소 차이 합: "+meals_d[min_index].sum_dif);
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

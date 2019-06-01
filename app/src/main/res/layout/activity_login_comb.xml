@@ -99,7 +99,7 @@
                 android:background="@drawable/button_background"
                 android:backgroundTint="#A4A4A4"
                 android:layout_marginRight="5dp"
-                android:textColor="#000000" />
+                android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/emailCreateAccountButton"
@@ -116,6 +116,7 @@
 
 
         <LinearLayout
+            android:visibility="invisible"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"

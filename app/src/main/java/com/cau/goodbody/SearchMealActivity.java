@@ -31,7 +31,6 @@ import java.util.List;
 public class SearchMealActivity extends AppCompatActivity {
 
     private Toolbar sToolbar;
-    private Button searchMealButton;
     private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference("음식");
 
     private EditText editSearch;        // 검색어를 입력할 Input 창
@@ -58,7 +57,6 @@ public class SearchMealActivity extends AppCompatActivity {
         listView = findViewById(R.id.listviewmsg);
 
         editSearch = findViewById(R.id.editSearch);
-        searchMealButton = findViewById(R.id.editSearch_btn);
 
         //
         // 리스트를 생성한다.
@@ -98,37 +96,6 @@ public class SearchMealActivity extends AppCompatActivity {
                 search(text);
             }
         });
-
-        searchMealButton.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            final String string_sW = editSearch.getText().toString();
-
-            mDatabase.addValueEventListener(new ValueEventListener() {
-                @Override
-                public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                    Food data = dataSnapshot.child("음식").child(string_sW).getValue(Food.class);
-                    if(data != null){
-                        Intent pageIntent = new Intent(SearchMealActivity.this, RecordMealActivity.class);
-                        pageIntent.putExtra("search_name", string_sW);
-                        pageIntent.putExtra("search_name_kcal", Integer.toString(data.kcal));
-                        Log.i("TAG",Integer.toString(data.kcal));
-                        setResult(RESULT_OK,pageIntent);
-                        finish();
-                    }else{
-                        Toast.makeText(SearchMealActivity.this, "검색명을 확인해주세요", Toast.LENGTH_LONG).show();
-                    }
-                }
-
-                @Override
-                public void onCancelled(@NonNull DatabaseError databaseError) {
-
-                }
-            });
-
-        }
-
-    });
 }
 
     AdapterView.OnItemClickListener listener= new AdapterView.OnItemClickListener() {
@@ -142,8 +109,12 @@ public class SearchMealActivity extends AppCompatActivity {
 
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             // TODO Auto-generated method stub
-            //클릭된 아이템의 위치를 이용하여 데이터인 문자열을 Toast로 출력
-            Toast.makeText(SearchMealActivity.this, list.get(position), Toast.LENGTH_SHORT).show();
+//            //클릭된 아이템의 위치를 이용하여 데이터인 문자열을 Toast로 출력
+//            Toast.makeText(SearchMealActivity.this, list.get(position), Toast.LENGTH_SHORT).show();
+            Intent pageIntent = new Intent(SearchMealActivity.this, RecordMealActivity.class);
+            pageIntent.putExtra("search_name", list.get(position));
+            setResult(RESULT_OK,pageIntent);
+            finish();
         }
     };
 

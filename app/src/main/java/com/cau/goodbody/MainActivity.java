@@ -71,7 +71,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent mainpageIntent = new Intent(MainActivity.this, TextRecordActivity.class);
-                mainpageIntent.putExtra("current_user",c_user);
                 startActivity(mainpageIntent);
             }
         });
@@ -81,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent mainpageIntent = new Intent(MainActivity.this, ShowInbodyResultActivity.class);
-                mainpageIntent.putExtra("current_user",c_user);
                 startActivity(mainpageIntent);
             }
         });
@@ -91,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent mainpageIntent = new Intent(MainActivity.this, MealRecommendation.class);
-//                mainpageIntent.putExtra("current_user",c_user);
                 startActivity(mainpageIntent);
             }
         });

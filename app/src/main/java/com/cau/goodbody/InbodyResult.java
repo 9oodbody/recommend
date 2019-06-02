@@ -39,4 +39,5 @@ public class InbodyResult {
     public float getProtein(){return protein;}
     public float getSkeletal_muscle_mass(){return skeletal_muscle_mass;}
     public float getWeight(){return weight;}
+    public int getHeight(){return height;}
 }

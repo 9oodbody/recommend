@@ -50,6 +50,13 @@ public class TextRecordActivity extends AppCompatActivity {
                 pageIntent.putExtra("mineral_et", Float.parseFloat(mineralEt.getText().toString()));
                 pageIntent.putExtra("fat_mass_et", Float.parseFloat(fatMassEt.getText().toString()));
                 pageIntent.putExtra("current_user",c_user);
+                bodyWaterEt.getText().clear();
+                proteinEt.getText().clear();
+                mineralEt.getText().clear();
+                fatMassEt.getText().clear();
+                fatMassEt.setCursorVisible(false);
+                fatMassEt.setFocusable(false);
+                fatMassEt.setFocusableInTouchMode(false);
                 startActivity(pageIntent);
             }
         });

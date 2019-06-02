@@ -4,8 +4,13 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+import java.util.Calendar;
+
 import android.util.Log;
 import android.view.MenuItem;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -15,8 +20,9 @@ import com.google.firebase.database.ValueEventListener;
 public class MealRecommendation extends AppCompatActivity {
 
     private static final String TAG = "Meal Recommendation";
-
+    private FirebaseUser c_user;
     private Toolbar sToolbar;
+    private FirebaseDatabase database;
     private DatabaseReference mDatabase;
 
 //    int height=156, weight=46, american_age=22;
@@ -24,7 +30,8 @@ public class MealRecommendation extends AppCompatActivity {
 //    String goal="다이어트";
 //    double BMR;
 
-    int height,weight,american_age;
+    int height,american_age;
+    float weight;
     String sex,goal;
     double BMR;
 
@@ -39,9 +46,47 @@ public class MealRecommendation extends AppCompatActivity {
         getSupportActionBar().setTitle("식단 추천");
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance();
-        DatabaseReference mDatabase = database.getReference("식단");
+        c_user = FirebaseAuth.getInstance().getCurrentUser();
+        database = FirebaseDatabase.getInstance();
 
+        //개인 정보 받아오기(성별,목표,만 나이)
+        mDatabase = database.getReference("users").child(c_user.getUid());
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                User userdata = dataSnapshot.getValue(User.class);
+                sex = userdata.getSex();
+                goal = userdata.getGoal();
+                String birth = Integer.toString(userdata.getBirth());
+                int birthYear = Integer.parseInt(birth.substring(0,4));
+                int birthMonth = Integer.parseInt(birth.substring(4,6));
+                int birthDay = Integer.parseInt(birth.substring(6));
+                american_age = getAge(birthYear,birthMonth,birthDay);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+        //개인 정보 받아오기(키,몸무게)
+        mDatabase = database.getReference("users").child(c_user.getUid()).child("Inbody_result");
+        mDatabase.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                InbodyResult result = dataSnapshot.getValue(InbodyResult.class);
+                height = result.getHeight();
+                weight = result.getWeight();
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
+        //식단 추천
+        mDatabase = database.getReference("식단");
 
         mDatabase.addValueEventListener(new ValueEventListener() {
             @Override
@@ -112,6 +157,22 @@ public class MealRecommendation extends AppCompatActivity {
 
             }
         });
+    }
+
+    //생년월일로 만 나이 계산
+    public int getAge(int birthYear, int birthMonth, int birthDay)
+    {
+        Calendar current = Calendar.getInstance();
+        int currentYear  = current.get(Calendar.YEAR);
+        int currentMonth = current.get(Calendar.MONTH) + 1;
+        int currentDay   = current.get(Calendar.DAY_OF_MONTH);
+
+        int age = currentYear - birthYear;
+        // 생일 안 지난 경우 -1
+        if (birthMonth * 100 + birthDay > currentMonth * 100 + currentDay)
+            age--;
+
+        return age;
     }
 
     @Override

@@ -6,11 +6,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -27,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mDetailTextView;
     private Button signOutBtn;
     private Button verifyEmailBtn;
-    private Button toTextRecord,toResultTextRecord;
+    private Button toTextRecord, toShowInbodyResult;
     private Button toMealRecom;
 
     @Override
@@ -78,11 +76,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        toResultTextRecord = findViewById(R.id.to_result_text_record);
-        toResultTextRecord.setOnClickListener(new View.OnClickListener() {
+        toShowInbodyResult = findViewById(R.id.to_result_text_record);
+        toShowInbodyResult.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent mainpageIntent = new Intent(MainActivity.this, ResultTextRecordActivity.class);
+                Intent mainpageIntent = new Intent(MainActivity.this, ShowInbodyResultActivity.class);
                 mainpageIntent.putExtra("current_user",c_user);
                 startActivity(mainpageIntent);
             }

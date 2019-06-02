@@ -4,7 +4,6 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -23,7 +22,7 @@ public class ResultTextRecordActivity extends AppCompatActivity {
     private FirebaseDatabase database;
     private DatabaseReference myRef;
     private FirebaseUser c_user;
-    float data_w, data_bw, data_pt, data_mr, data_fm, data_mm, data_fc, data_smm, data_h, data_bmi;
+    float data_w, data_bw, data_pt, data_mr, data_fm, data_mm, data_fc, data_smm, data_bmi;
     private double  data_sd_smm_l, data_sd_smm_h, data_bmi_toD;
     public static double data_sd_fm_l, data_sd_fm_h;
 

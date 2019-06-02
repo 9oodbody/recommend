@@ -149,59 +149,6 @@ public class ResultTextRecordActivity extends AppCompatActivity {
 
             }
         });
-        //test
-
-//        //현재 로그인한 사용자의 성별 가져오기 위한 경로 지정
-//        myRef = database.getReference("users").child(c_user.getUid());
-
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                //현재 로그인한 사용자의 성별에 따른 체지방 표준 범위 계산
-//                User userdata = dataSnapshot.getValue(User.class);
-//                float data_sd_fm;
-//                //남성일 경우, 체중의 15%   여성일 경우, 체중의 23%
-//                if(userdata.getSex().equals("남성")){
-//                    data_sd_fm = data_w * 0.15f;
-//                }else{
-//                    data_sd_fm = data_w * 0.23f;
-//                }
-//                //체지방량 표준 최저 계산
-//                data_sd_fm_l = data_sd_fm * 0.8;
-//                data_sd_fm_l = Double.parseDouble(String.format("%.1f",data_sd_fm_l));
-//                myRef2 = database.getReference();
-//                myRef2.child("Inbody_result").child(c_user.getUid()).child("min_fm").setValue(data_sd_fm_l);//체지방 표준 최저
-//                //체지방량 표준 최고 계산
-//                data_sd_fm_h = data_sd_fm * 1.6;
-//                data_sd_fm_h = Double.parseDouble(String.format("%.1f",data_sd_fm_h));
-//                myRef2 = database.getReference();
-//                myRef2.child("Inbody_result").child(c_user.getUid()).child("max_fm").setValue(data_sd_fm_h);//체지방 표준 최저
-//                //체지방량 표준 범위 출력
-//                String data_sd_fm_toS = Double.toString(data_sd_fm_l) +"~"+ Double.toString(data_sd_fm_h);
-//                printsdFM = findViewById(R.id.print_sd_fm);
-//                printsdFM.setText(data_sd_fm_toS);
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
-        //DB 데이터 업데이트를 위한 경로 지정
-//        myRef = database.getReference();
-//
-//        myRef.child("Inbody_result").child(c_user.getUid()).child("weight").setValue(data_w);//체중
-//        myRef.child("Inbody_result").child(c_user.getUid()).child("body_water").setValue(data_bw);//체수분
-//        myRef.child("Inbody_result").child(c_user.getUid()).child("protein").setValue(data_pt);//단백질
-//        myRef.child("Inbody_result").child(c_user.getUid()).child("mineral").setValue(data_mr);//무기질
-//        myRef.child("Inbody_result").child(c_user.getUid()).child("fat_mass").setValue(data_fm);//체지방
-//        myRef.child("Inbody_result").child(c_user.getUid()).child("muscle_mass").setValue(data_mm);//근육량
-//        myRef.child("Inbody_result").child(c_user.getUid()).child("fat_free_mass").setValue(data_fc);//제지방량
-//        myRef.child("Inbody_result").child(c_user.getUid()).child("skeletal_muscle_mass").setValue(data_smm);//골격근량
-//        myRef.child("Inbody_result").child(c_user.getUid()).child("min_smm").setValue(data_sd_smm_l);//골격근 표준 최저
-//        myRef.child("Inbody_result").child(c_user.getUid()).child("max_smm").setValue(data_sd_smm_h);//골격근 표준 최고
-////        myRef.child("Inbody_result").child(c_user.getUid()).child("min_fm").setValue(data_sd_fm_l);//체지방 표준 최저
-////        myRef.child("Inbody_result").child(c_user.getUid()).child("max_fm").setValue(data_sd_fm_h);//체지방 표준 최고
     }
 
     @Override

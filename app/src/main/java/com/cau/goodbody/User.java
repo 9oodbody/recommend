@@ -5,19 +5,19 @@ public class User {
     private String email;
     private String sex;
     private int height;
-    private int age;
+    private int birth;
     private String goal;
 
     public User(){
 
     }
 
-    public User(String name,String email,String sex,int height,int age,String goal) {
+    public User(String name,String email,String sex,int height,int birth,String goal) {
         this.name = name;
         this.email = email;
         this.sex = sex;
         this.height = height;
-        this.age = age;
+        this.birth = birth;
         this.goal = goal;
     }
 
@@ -38,8 +38,8 @@ public class User {
         return height;
     }
 
-    public int getAge(){
-        return age;
+    public int getBirth(){
+        return birth;
     }
 
     public String getGoal(){

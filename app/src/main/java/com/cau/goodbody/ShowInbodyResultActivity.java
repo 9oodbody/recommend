@@ -90,21 +90,6 @@ public class ShowInbodyResultActivity extends AppCompatActivity {
 
                         printBMI.setText(String.valueOf(result.getBMI()));
                     }
-//                    printBW.setText(String.valueOf(result.getBody_water()));
-//                    printPT.setText(String.valueOf(result.getProtein()));
-//                    printMR.setText(String.valueOf(result.getMineral()));
-//                    printFM.setText(String.valueOf(result.getFat_mass()));
-//                    printMM.setText(String.valueOf(result.getMuscle_mass()));
-//                    printFC .setText(String.valueOf(result.getFat_free_mass()));
-//                    printW .setText(String.valueOf(result.getWeight()));
-//                    printSMM.setText(String.valueOf(result.getSkeletal_muscle_mass()));
-//
-//                    String data_sd_smm_toS = Double.toString(result.getMin_smm()) +"~"+ Double.toString(result.getMax_smm());
-//                    printsdSMM.setText(data_sd_smm_toS);
-//                    String data_sd_fm_toS = Double.toString(result.getMin_fm()) +"~"+ Double.toString(result.getMax_fm());
-//                    printsdFM.setText(String.valueOf(data_sd_fm_toS));
-//
-//                    printBMI.setText(String.valueOf(result.getBMI()));
                 }
 
                 @Override
@@ -112,35 +97,6 @@ public class ShowInbodyResultActivity extends AppCompatActivity {
 
                 }
             });
-
-//        //인바디 결과 있다면 가져오기
-//        myRef = database.getReference("users").child(c_user.getUid()).child("Inbody_result");
-//        myRef.addValueEventListener(new ValueEventListener() {
-//            @Override
-//            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-//                InbodyResult result = dataSnapshot.getValue(InbodyResult.class);
-//                printBW.setText(String.valueOf(result.getBody_water()));
-//                printPT.setText(String.valueOf(result.getProtein()));
-//                printMR.setText(String.valueOf(result.getMineral()));
-//                printFM.setText(String.valueOf(result.getFat_mass()));
-//                printMM.setText(String.valueOf(result.getMuscle_mass()));
-//                printFC .setText(String.valueOf(result.getFat_free_mass()));
-//                printW .setText(String.valueOf(result.getWeight()));
-//                printSMM.setText(String.valueOf(result.getSkeletal_muscle_mass()));
-//
-//                String data_sd_smm_toS = Double.toString(result.getMin_smm()) +"~"+ Double.toString(result.getMax_smm());
-//                printsdSMM.setText(data_sd_smm_toS);
-//                String data_sd_fm_toS = Double.toString(result.getMin_fm()) +"~"+ Double.toString(result.getMax_fm());
-//                printsdFM.setText(String.valueOf(data_sd_fm_toS));
-//
-//                printBMI.setText(String.valueOf(result.getBMI()));
-//            }
-//
-//            @Override
-//            public void onCancelled(@NonNull DatabaseError databaseError) {
-//
-//            }
-//        });
     }
 
     @Override

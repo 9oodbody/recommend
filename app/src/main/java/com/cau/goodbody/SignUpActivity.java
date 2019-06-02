@@ -114,21 +114,20 @@ public class SignUpActivity extends BaseActivity {
                             //키 받아오기
                             mHeightField = findViewById(R.id.fieldHeight);
                             int height = Integer.parseInt(mHeightField.getText().toString());
-                            //출생년도 받아오기
+                            //생년월일 받아오기
                             mBirthField = findViewById(R.id.fieldBirth);
                             int birth = Integer.parseInt(mBirthField.getText().toString());
-                            int age = 2019-birth+1;
                             //목표 받아오기
                             RadioButton rd2 = findViewById(rgGoal.getCheckedRadioButtonId());
                             String str_goal = rd2.getText().toString();
 
-                            User userdata = new User(name,email,str_sex,height,age,str_goal);
+                            User userdata = new User(name,email,str_sex,height,birth,str_goal);
 
                             mDatabase.child("users").child(cu).child("name").setValue(userdata.getName());
                             mDatabase.child("users").child(cu).child("email").setValue(userdata.getEmail());
                             mDatabase.child("users").child(cu).child("sex").setValue(userdata.getSex());
                             mDatabase.child("users").child(cu).child("height").setValue(userdata.getHeight());
-                            mDatabase.child("users").child(cu).child("age").setValue(userdata.getAge());
+                            mDatabase.child("users").child(cu).child("birth").setValue(userdata.getBirth());
                             mDatabase.child("users").child(cu).child("goal").setValue(userdata.getGoal());
 
                             user.sendEmailVerification()
@@ -149,6 +148,9 @@ public class SignUpActivity extends BaseActivity {
                                                 mBirthField.getText().clear();
                                                 rgSex.clearCheck();
                                                 rgGoal.clearCheck();
+                                                mBirthField.setCursorVisible(false);
+                                                mBirthField.setFocusable(false);
+                                                mBirthField.setFocusableInTouchMode(false);
                                             } else {
                                                 Log.e(TAG, "sendEmailVerification", task.getException());
                                                 Toast.makeText(SignUpActivity.this,

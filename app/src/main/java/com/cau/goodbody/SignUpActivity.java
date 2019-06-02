@@ -7,6 +7,7 @@ import android.text.TextUtils;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.inputmethod.EditorInfo;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -138,7 +139,7 @@ public class SignUpActivity extends BaseActivity {
 
                                             if (task.isSuccessful()) {
                                                 Toast.makeText(SignUpActivity.this,
-                                                        "메일 발송  " + user.getEmail(),
+                                                        user.getEmail()+" 로 메일 발송",
                                                         Toast.LENGTH_LONG).show();
                                                 mNameField.getText().clear();
                                                 mEmailField.getText().clear();

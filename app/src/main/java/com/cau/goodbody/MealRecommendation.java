@@ -16,6 +16,8 @@ import android.view.MenuItem;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.TextView;
+
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
@@ -41,6 +43,8 @@ public class MealRecommendation extends AppCompatActivity {
     String sex,goal;
     double BMR;
     String meal,meal_img;
+    int meal_kcal,meal_c,meal_p,meal_l;
+    TextView y,m,d;
 
 
     @Override
@@ -55,6 +59,20 @@ public class MealRecommendation extends AppCompatActivity {
 
         c_user = FirebaseAuth.getInstance().getCurrentUser();
         database = FirebaseDatabase.getInstance();
+
+        y = findViewById(R.id.year);
+        m = findViewById(R.id.month);
+        d = findViewById(R.id.day);
+        Calendar current = Calendar.getInstance();
+        int currentYear  = current.get(Calendar.YEAR);
+        int currentMonth = current.get(Calendar.MONTH) + 1;
+        int currentDay   = current.get(Calendar.DAY_OF_MONTH);
+        String s_y = Integer.toString(currentYear)+"년";
+        String s_m = Integer.toString(currentMonth)+"월";
+        String s_d = Integer.toString(currentDay)+"일";
+        y.setText(s_y);
+        m.setText(s_m);
+        d.setText(s_d);
 
         //개인 정보 받아오기(성별,목표,만 나이)
         mDatabase = database.getReference("users").child(c_user.getUid());
@@ -160,6 +178,7 @@ public class MealRecommendation extends AppCompatActivity {
                 System.out.println("추천 식단: "+meals[min_index].getComposition()+" 최소 차이 합: "+meals_d[min_index].sum_dif+" 인덱스: "+min_index);
                 meal = meals[min_index].getComposition();
                 meal_img = meals[min_index].getImage()+".png";
+                meal_kcal = meals[min_index].getKcal();
 
                 //추천 식단을 콤마 기준으로 파싱
                 String[] mealArray = meal.split(",");
@@ -168,11 +187,6 @@ public class MealRecommendation extends AppCompatActivity {
                 ListView lv = findViewById(R.id.listView1);
                 lv.setAdapter(adapter);
 
-//                List<String> mealList = new ArrayList<>();
-//                for(int i=0;i<mealArray.length;i++){
-//                    mealList.add(mealArray[i]);
-//                    System.out.println(mealArray[i]);
-//                }
                 FirebaseStorage storage = FirebaseStorage.getInstance();
 
                 StorageReference storageRef = storage.getReference();

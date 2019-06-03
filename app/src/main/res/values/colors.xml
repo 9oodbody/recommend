@@ -9,4 +9,5 @@
     <color name="grey_500">#9E9E9E</color>
 
     <color name="google_login_button">#f44336</color>
+    <color name="textInputLayout">#96ffffff</color>
 </resources>

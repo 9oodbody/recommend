@@ -53,7 +53,6 @@ public class LoginCombActivity extends BaseActivity implements
     private EditText mEmailField;
     private EditText mPasswordField;
 
-    private Toolbar sToolbar;
 
     // [START declare_auth]
     private FirebaseAuth mAuth;
@@ -73,9 +72,6 @@ public class LoginCombActivity extends BaseActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_comb);
 
-        sToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(sToolbar);
-        getSupportActionBar().setTitle("로그인");
 
 //        mDatabase = FirebaseDatabase.getInstance().getReference();
 
@@ -89,10 +85,6 @@ public class LoginCombActivity extends BaseActivity implements
         // Buttons
         findViewById(R.id.emailSignInButton).setOnClickListener(this);
         findViewById(R.id.emailCreateAccountButton).setOnClickListener(this);
-        findViewById(R.id.signOutButton).setOnClickListener(this);
-        findViewById(R.id.verifyEmailButton).setOnClickListener(this);
-        //google login
-        findViewById(R.id.google_login_button).setOnClickListener(this);
 
         // [START config_signin]
         // Configure Google Sign In
@@ -469,8 +461,6 @@ public class LoginCombActivity extends BaseActivity implements
             signOut();
         } else if (i == R.id.verifyEmailButton) {
             sendEmailVerification();
-        } else if (i == R.id.google_login_button){
-            signIn_Google();
         } else if (i == R.id.disconnectButton) {
             revokeAccess();
         }

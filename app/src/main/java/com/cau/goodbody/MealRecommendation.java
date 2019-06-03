@@ -157,9 +157,10 @@ public class MealRecommendation extends AppCompatActivity {
                         min_index = i;
                     }
                 }
-                System.out.println("추천 식단: "+meals[min_index].getComposition()+" 최소 차이 합: "+meals_d[min_index].sum_dif);
+                System.out.println("추천 식단: "+meals[min_index].getComposition()+" 최소 차이 합: "+meals_d[min_index].sum_dif+" 인덱스: "+min_index);
                 meal = meals[min_index].getComposition();
-                meal_img = meals[min_index].getImage()+".jpg";
+                meal_img = meals[min_index].getImage()+".png";
+
                 //추천 식단을 콤마 기준으로 파싱
                 String[] mealArray = meal.split(",");
 
@@ -178,7 +179,6 @@ public class MealRecommendation extends AppCompatActivity {
 
                 StorageReference pathReference = storageRef.child(meal_img);
                 final ImageView mealImg = findViewById(R.id.mealimg);
-//                Glide.with(MealRecommendation.this).load(pathReference).into(mealImg);
                 try {
                     // Storage 에서 다운받아 저장시킬 임시파일
                     final File imageFile = File.createTempFile("images", "jpg");

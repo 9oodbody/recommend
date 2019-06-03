@@ -14,12 +14,14 @@
 
     <ImageView
         android:id="@+id/mealimg"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_width="250dp"
+        android:layout_height="250dp"
+        android:layout_gravity="center_horizontal"
+        android:adjustViewBounds="true"/>
 
     <ListView
         android:id="@+id/listView1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:background="#FAFAFA"

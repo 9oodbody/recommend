@@ -1,19 +1,23 @@
 package com.cau.goodbody;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
 
-import java.util.ArrayList;
+import java.io.File;
+import java.io.IOException;
 import java.util.Calendar;
-import java.util.List;
 
 import android.util.Log;
 import android.view.MenuItem;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
-
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
@@ -21,6 +25,9 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 public class MealRecommendation extends AppCompatActivity {
 
@@ -33,7 +40,7 @@ public class MealRecommendation extends AppCompatActivity {
     float weight;
     String sex,goal;
     double BMR;
-    String meal;
+    String meal,meal_img;
 
 
     @Override
@@ -152,7 +159,7 @@ public class MealRecommendation extends AppCompatActivity {
                 }
                 System.out.println("추천 식단: "+meals[min_index].getComposition()+" 최소 차이 합: "+meals_d[min_index].sum_dif);
                 meal = meals[min_index].getComposition();
-
+                meal_img = meals[min_index].getImage()+".jpg";
                 //추천 식단을 콤마 기준으로 파싱
                 String[] mealArray = meal.split(",");
 
@@ -165,9 +172,33 @@ public class MealRecommendation extends AppCompatActivity {
 //                    mealList.add(mealArray[i]);
 //                    System.out.println(mealArray[i]);
 //                }
+                FirebaseStorage storage = FirebaseStorage.getInstance();
 
+                StorageReference storageRef = storage.getReference();
 
-
+                StorageReference pathReference = storageRef.child(meal_img);
+                final ImageView mealImg = findViewById(R.id.mealimg);
+//                Glide.with(MealRecommendation.this).load(pathReference).into(mealImg);
+                try {
+                    // Storage 에서 다운받아 저장시킬 임시파일
+                    final File imageFile = File.createTempFile("images", "jpg");
+                    pathReference.getFile(imageFile).addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            // Success Case
+                            Bitmap bitmapImage = BitmapFactory.decodeFile(imageFile.getPath());
+                            mealImg.setImageBitmap(bitmapImage);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            // Fail Case
+                            e.printStackTrace();
+                        }
+                    });
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {

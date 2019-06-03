@@ -9,7 +9,11 @@ import android.support.v7.widget.Toolbar;
 
 import java.io.File;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
+import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 import android.util.Log;
 import android.view.MenuItem;
@@ -178,7 +182,17 @@ public class MealRecommendation extends AppCompatActivity {
                 System.out.println("추천 식단: "+meals[min_index].getComposition()+" 최소 차이 합: "+meals_d[min_index].sum_dif+" 인덱스: "+min_index);
                 meal = meals[min_index].getComposition();
                 meal_img = meals[min_index].getImage()+".png";
-                meal_kcal = meals[min_index].getKcal();
+
+                //min_index를 db에 저장
+                long now = System.currentTimeMillis();
+                Date date = new Date(now);
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyyMMdd");
+                String getTime = sdf.format(date);
+
+                mDatabase = database.getReference("users");
+                mDatabase.child(c_user.getUid()).child("meal_recommendation").child(getTime).child("index").setValue(min_index);
+
+
 
                 //추천 식단을 콤마 기준으로 파싱
                 String[] mealArray = meal.split(",");

@@ -4,10 +4,15 @@ import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.Toolbar;
+
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 import android.util.Log;
 import android.view.MenuItem;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -24,16 +29,11 @@ public class MealRecommendation extends AppCompatActivity {
     private Toolbar sToolbar;
     private FirebaseDatabase database;
     private DatabaseReference mDatabase;
-
-//    int height=156, weight=46, american_age=22;
-//    String sex="여자";
-//    String goal="다이어트";
-//    double BMR;
-
     int height,american_age;
     float weight;
     String sex,goal;
     double BMR;
+    String meal;
 
 
     @Override
@@ -151,12 +151,30 @@ public class MealRecommendation extends AppCompatActivity {
                     }
                 }
                 System.out.println("추천 식단: "+meals[min_index].getComposition()+" 최소 차이 합: "+meals_d[min_index].sum_dif);
+                meal = meals[min_index].getComposition();
+
+                //추천 식단을 콤마 기준으로 파싱
+                String[] mealArray = meal.split(",");
+
+                ArrayAdapter adapter = new ArrayAdapter(getApplicationContext(),R.layout.myrow,mealArray);
+                ListView lv = findViewById(R.id.listView1);
+                lv.setAdapter(adapter);
+
+//                List<String> mealList = new ArrayList<>();
+//                for(int i=0;i<mealArray.length;i++){
+//                    mealList.add(mealArray[i]);
+//                    System.out.println(mealArray[i]);
+//                }
+
+
+
             }
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
 
             }
         });
+
     }
 
     //생년월일로 만 나이 계산

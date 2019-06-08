@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/equipment_v1">
+
+    <LinearLayout
+        android:layout_marginVertical="110dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:text="운동"
+            android:textSize="30dp"
+            android:textColor="#ffffff"
+            android:background="@drawable/buttonshapewhitebg"
+            android:drawableTop="@drawable/ic_dumbbell"
+            android:paddingTop="20dp"
+            android:layout_marginBottom="30dp"/>
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:text="식단"
+            android:textSize="30dp"
+            android:textColor="#ffffff"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/buttonshapewhitebg"
+            android:drawableTop="@drawable/ic_cereals"
+            android:paddingTop="20dp"
+            android:layout_marginBottom="30dp"/>
+        <Button
+            android:layout_width="130dp"
+            android:layout_height="130dp"
+            android:text="결과지"
+            android:textSize="30dp"
+            android:textColor="#ffffff"
+            android:background="@drawable/buttonshapewhitebg"
+            android:drawableTop="@drawable/ic_contract"
+            android:paddingTop="20dp"
+            android:layout_marginTop="30dp"/>
+    </LinearLayout>
+
+</RelativeLayout>

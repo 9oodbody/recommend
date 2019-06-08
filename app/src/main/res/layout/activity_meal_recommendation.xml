@@ -41,7 +41,7 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="오늘의 식단 추천"
+        android:text="오늘의 식단"
         android:textSize="20sp"
         android:gravity="center"/>
 
@@ -60,7 +60,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
-        android:background="#FAFAFA"
+        android:background="#fafafa"
         android:dividerHeight="0px"
-        android:divider="#FAFAFA"></ListView>
+        android:divider="#fafafa"></ListView>
 </LinearLayout>

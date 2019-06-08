@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/equipment_v1">
+
+    <LinearLayout
+        android:layout_marginVertical="80dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <Button
+                android:id="@+id/to_picture"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:text="사진 입력"
+                android:textSize="20dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/buttonshapewhitebg"
+                android:drawableTop="@drawable/ic_photo_camera"
+                android:paddingTop="20dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <Button
+                android:id="@+id/to_manual_result"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:text="직접 입력"
+                android:textSize="20dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/buttonshapewhitebg"
+                android:drawableTop="@drawable/ic_clicker"
+                android:paddingTop="20dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <Button
+                android:id="@+id/to_show_result"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:text="결과지 보기"
+                android:textSize="20dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/buttonshapewhitebg"
+                android:drawableTop="@drawable/ic_magnifying_glass_search"
+                android:paddingTop="20dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

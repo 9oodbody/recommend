@@ -2,87 +2,78 @@ package com.cau.goodbody;
 
 import android.content.Intent;
 import android.support.annotation.NonNull;
+import android.support.design.widget.NavigationView;
+import android.support.v4.view.GravityCompat;
+import android.support.v4.widget.DrawerLayout;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
-
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
+import android.widget.FrameLayout;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = "MainActivity";
 
-    private Toolbar sToolbar;
-    private FirebaseUser c_user;
-    private TextView mStatusTextView;
-    private TextView mDetailTextView;
-    private Button signOutBtn;
-    private Button verifyEmailBtn;
-    private Button toTextRecord, toShowInbodyResult;
-    private Button toMealRecom;
+    private Button toMealRecom,toResult;
+    private DrawerLayout mDrawerLayout;
+    private FrameLayout flContainer;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        sToolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(sToolbar);
-        getSupportActionBar().setTitle("메인 페이지");
-
-        mStatusTextView = findViewById(R.id.status);
-        mDetailTextView = findViewById(R.id.detail);
-
-        c_user = FirebaseAuth.getInstance().getCurrentUser();
-
-        mStatusTextView.setText(getString(R.string.emailpassword_status_fmt, c_user.getEmail(), c_user.isEmailVerified()));
-        mDetailTextView.setText(getString(R.string.firebase_status_fmt, c_user.getUid()));
-        signOutBtn = findViewById(R.id.signOutButton);
-        signOutBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                signOut();
-                Intent pageIntent = new Intent(MainActivity.this, LoginCombActivity.class);
-                startActivity(pageIntent);
-            }
-        });
-
-        if(c_user.isEmailVerified()){
-            findViewById(R.id.verifyEmailButton).setEnabled(false);
-        }
-
-        verifyEmailBtn = findViewById(R.id.verifyEmailButton);
-        verifyEmailBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendEmailVerification();
-            }
-        });
-
-        toTextRecord = findViewById(R.id.to_text_record);
-        toTextRecord.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mainpageIntent = new Intent(MainActivity.this, TextRecordActivity.class);
-                startActivity(mainpageIntent);
-            }
-        });
-
-        toShowInbodyResult = findViewById(R.id.to_result_text_record);
-        toShowInbodyResult.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent mainpageIntent = new Intent(MainActivity.this, ShowInbodyResultActivity.class);
-                startActivity(mainpageIntent);
-            }
-        });
+//        flContainer = findViewById(R.id.fl_activity_main_container);
+//
+//        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+//        setSupportActionBar(toolbar);
+//        ActionBar actionBar = getSupportActionBar();
+//        actionBar.setHomeAsUpIndicator(R.drawable.ic_menu);
+//        actionBar.setDisplayHomeAsUpEnabled(true);
+//
+//        mDrawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+//
+//        NavigationView navigationView = (NavigationView) findViewById(R.id.navigation_view);
+//        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+//            @Override
+//            public boolean onNavigationItemSelected(MenuItem menuItem) {
+//                menuItem.setChecked(true);
+//                mDrawerLayout.closeDrawers();
+//
+//                int id = menuItem.getItemId();
+//                switch (id) {
+//                    case R.id.navigation_item_attachment:
+//                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+//                        break;
+//
+//                    case R.id.navigation_item_images:
+//                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+//                        break;
+//
+//                    case R.id.navigation_item_location:
+//                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+//                        break;
+//
+//                    case R.id.nav_sub_menu_item01:
+//                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+//                        break;
+//
+//                    case R.id.nav_sub_menu_item02:
+//                        Toast.makeText(MainActivity.this, menuItem.getTitle(), Toast.LENGTH_LONG).show();
+//                        break;
+//
+//                }
+//
+//                return true;
+//            }
+//        });
 
         toMealRecom = findViewById(R.id.to_meal_recommendation);
         toMealRecom.setOnClickListener(new View.OnClickListener() {
@@ -92,27 +83,38 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(mainpageIntent);
             }
         });
+
+        toResult = findViewById(R.id.to_result);
+        toResult.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent mainpageIntent = new Intent(MainActivity.this, InbodySelectActivity.class);
+                startActivity(mainpageIntent);
+            }
+        });
     }
 
-    private void signOut() {
-        FirebaseAuth.getInstance().signOut();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu, menu);
+        return true;
     }
 
-    public void sendEmailVerification() {
-        // [START send_email_verification]
-        FirebaseAuth auth = FirebaseAuth.getInstance();
-        FirebaseUser user = auth.getCurrentUser();
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
-        user.sendEmailVerification()
-                .addOnCompleteListener(new OnCompleteListener<Void>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Void> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "Email sent.");
-                        }
-                    }
-                });
-        // [END send_email_verification]
+        switch (id) {
+            case android.R.id.home:
+                mDrawerLayout.openDrawer(GravityCompat.START);
+                return true;
+            case R.id.action_settings:
+                return true;
+        }
+
+        return super.onOptionsItemSelected(item);
     }
-
 }

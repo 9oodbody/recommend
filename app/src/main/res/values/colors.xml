@@ -10,4 +10,6 @@
 
     <color name="google_login_button">#f44336</color>
     <color name="textInputLayout">#96ffffff</color>
+
+    <color name="mealrecom">#E0E6F8</color>
 </resources>

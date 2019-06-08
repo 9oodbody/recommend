@@ -2,6 +2,7 @@ package com.cau.goodbody;
 
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -12,8 +13,6 @@ import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashMap;
-import java.util.Map;
 
 import android.util.Log;
 import android.view.MenuItem;
@@ -205,8 +204,11 @@ public class MealRecommendation extends AppCompatActivity {
 
                 StorageReference storageRef = storage.getReference();
 
+
                 StorageReference pathReference = storageRef.child(meal_img);
                 final ImageView mealImg = findViewById(R.id.mealimg);
+
+//                GradientDrawable drawable = (GradientDrawable)
                 try {
                     // Storage 에서 다운받아 저장시킬 임시파일
                     final File imageFile = File.createTempFile("images", "jpg");

@@ -14,38 +14,52 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ShowInbodyResultActivity">
+        <activity android:name=".Leg2listActivity">
         </activity>
-        <activity android:name=".SearchMealActivity">
+        <activity android:name=".Leg1listActivity">
         </activity>
-        <activity android:name=".RecordMealActivity">
+        <activity android:name=".Che1listActivity">
         </activity>
-        <activity android:name=".CalendarTestActivity">
+        <activity android:name=".Arm1listActivity">
         </activity>
-        <activity android:name=".MealRecommendation">
+        <activity android:name=".RecommendExrActivity">
         </activity>
-        <activity android:name=".ResultTextRecordActivity">
+        <activity android:name=".ViewDetailExrActivity">
         </activity>
-        <activity android:name=".TextRecordActivity">
+        <activity android:name=".Exr_MainActivity">
         </activity>
-        <activity android:name=".SignUpActivity">
+        <activity android:name=".AllExerciseActivity">
         </activity>
-        <activity android:name=".DetailRecordActivity">
+        <activity android:name=".WorkoutSelectActivity">
         </activity>
-        <activity android:name=".SearchWorkoutActivity">
+        <activity
+            android:name=".MainEActivity"
+            android:label="@string/title_activity_main_e"
+            android:theme="@style/AppTheme.NoActionBar">
         </activity>
-        <activity android:name=".RecordWorkoutActivity">
+        <activity android:name=".InbodySelectActivity">
+
         </activity>
-        <activity android:name=".MainActivity">
-        </activity>
+        <activity android:name=".MealCalendarActivity" />
+        <activity android:name=".ShowInbodyResultActivity" />
+        <activity android:name=".SearchMealActivity" />
+        <activity android:name=".RecordMealActivity" />
+        <activity android:name=".MealRecommendation" />
+        <activity android:name=".ResultTextRecordActivity" />
+        <activity android:name=".TextRecordActivity" />
+        <activity android:name=".SignUpActivity" />
+        <activity android:name=".DetailRecordActivity" />
+        <activity android:name=".SearchWorkoutActivity" />
+        <activity android:name=".RecordWorkoutActivity" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".LoginCombActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".BaseActivity">
-        </activity>
+        <activity android:name=".BaseActivity" />
 
         <meta-data
             android:name="com.facebook.sdk.ApplicationId"

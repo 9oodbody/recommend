@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/equipment_v1">
+
+    <LinearLayout
+        android:layout_marginVertical="150dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:gravity="center_horizontal">
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <Button
+                android:id="@+id/to_all"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:text="전체 운동"
+                android:textSize="20dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/buttonshapewhitebg"
+                android:paddingTop="20dp"/>
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+            <Button
+                android:id="@+id/to_rec"
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:text="추천 운동"
+                android:textSize="20dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/buttonshapewhitebg"
+                android:paddingTop="20dp"/>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</RelativeLayout>

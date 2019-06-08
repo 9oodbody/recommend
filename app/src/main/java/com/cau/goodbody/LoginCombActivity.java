@@ -305,7 +305,7 @@ public class LoginCombActivity extends BaseActivity implements
                             FirebaseUser user = mAuth.getCurrentUser();
 //                            updateUI(user);
                             if (user.isEmailVerified()) {
-                                Intent mainpageIntent = new Intent(LoginCombActivity.this, MainActivity.class);
+                                Intent mainpageIntent = new Intent(LoginCombActivity.this, MainEActivity.class);
                                 mainpageIntent.putExtra("current_user",user);
                                 startActivity(mainpageIntent);
                             } else {
@@ -337,7 +337,7 @@ public class LoginCombActivity extends BaseActivity implements
     private void signIn_Google() {
 //        Intent signInIntent = mGoogleSignInClient.getSignInIntent();
 //        startActivityForResult(signInIntent, RC_SIGN_IN);
-        Intent mainpageIntent = new Intent(LoginCombActivity.this, MainActivity.class);
+        Intent mainpageIntent = new Intent(LoginCombActivity.this, MainEActivity.class);
         startActivity(mainpageIntent);
     }
     // [END signin]
@@ -364,7 +364,6 @@ public class LoginCombActivity extends BaseActivity implements
 
     private void sendEmailVerification() {
         // Disable button
-        findViewById(R.id.verifyEmailButton).setEnabled(false);
 
         // Send verification email
         // [START send_email_verification]
@@ -375,7 +374,6 @@ public class LoginCombActivity extends BaseActivity implements
                     public void onComplete(@NonNull Task<Void> task) {
                         // [START_EXCLUDE]
                         // Re-enable button
-                        findViewById(R.id.verifyEmailButton).setEnabled(true);
 
                         if (task.isSuccessful()) {
                             Toast.makeText(LoginCombActivity.this,
@@ -455,12 +453,11 @@ public class LoginCombActivity extends BaseActivity implements
 //            createAccount(mEmailField.getText().toString(), mPasswordField.getText().toString());
             Intent mainpageIntent = new Intent(LoginCombActivity.this, SignUpActivity.class);
             startActivity(mainpageIntent);
+
         } else if (i == R.id.emailSignInButton) {
             signIn(mEmailField.getText().toString(), mPasswordField.getText().toString());
         } else if (i == R.id.signOutButton) {
             signOut();
-        } else if (i == R.id.verifyEmailButton) {
-            sendEmailVerification();
         } else if (i == R.id.disconnectButton) {
             revokeAccess();
         }
